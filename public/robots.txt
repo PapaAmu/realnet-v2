@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+
+Sitemap: https://realnet-web.co.za/sitemap.xml
+Sitemap: https://realnet-web.co.za/sitemap-pages.xml
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1
