@@ -1,13 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-ZA">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WELCOME</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>REALNET WEB SOLUTIONS - Web & Mobile Development Services</title>
+    <meta name="description" content="Professional web development, mobile app development, and software solutions in South Africa. Custom websites, applications, and hosting services.">
+    <meta name="keywords" content="web development, mobile apps, software development, hosting, south africa, pretoria">
+    <meta name="author" content="REALNET WEB SOLUTIONS">
+    
+    <!-- Theme Color for Mobile Browsers -->
+    <meta name="theme-color" content="#FF9E5E">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/logo.png" />
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Web App Manifest - MUST be placed before any icon links -->
+    <link rel="manifest" crossorigin="use-credentials" href="/site.webmanifest" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- DNS Prefetch for performance -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    
+    <!-- Canonical URL (will be dynamically updated by React Helmet) -->
+    <link rel="canonical" href="https://realnet-web.co.za/" />
   </head>
   <body>
+    <noscript>
+      <div style="text-align: center; padding: 2rem; font-family: Arial, sans-serif;">
+        <h1>JavaScript Required</h1>
+        <p>This website requires JavaScript to function properly. Please enable JavaScript in your browser settings.</p>
+        <p>For assistance, contact us at: <a href="mailto:support@realnet-web.co.za">support@realnet-web.co.za</a></p>
+      </div>
+    </noscript>
+    
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Performance optimization: Defer script loading -->
+    <script type="module" src="/src/main.jsx" defer></script>
   </body>
 </html>
