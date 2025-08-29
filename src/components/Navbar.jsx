@@ -3,8 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [mobileView, setMobileView] = useState("main"); // 'main' or 'features'
+  const [isSolutionsDropdownOpen, setIsSolutionsDropdownOpen] = useState(false);
+  const [isCompanyDropdownOpen, setIsCompanyDropdownOpen] = useState(false);
+  const [mobileView, setMobileView] = useState("main"); // 'main', 'solutions' or 'company'
   const [activeLink, setActiveLink] = useState("home");
   const [scrolled, setScrolled] = useState(false);
 
@@ -13,6 +14,16 @@ const Navbar = () => {
       const isScrolled = window.scrollY > 10;
       setScrolled(isScrolled);
     };
+
+    // Set active link based on current URL
+    const pathname = window.location.pathname;
+    if (pathname === "/") setActiveLink("home");
+    else if (pathname.includes("features")) setActiveLink("solutions");
+    else if (pathname.includes("contact-us")) setActiveLink("contact");
+    else if (pathname.includes("about-us")) setActiveLink("about");
+    else if (pathname.includes("projects")) setActiveLink("projects");
+    else if (pathname.includes("popia")) setActiveLink("popia");
+    else if (pathname.includes("pricing") || pathname.includes("#pricing")) setActiveLink("pricing");
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -23,8 +34,12 @@ const Navbar = () => {
     if (isOpen) setMobileView("main");
   };
 
-  const showFeatures = () => {
-    setMobileView("features");
+  const showSolutions = () => {
+    setMobileView("solutions");
+  };
+
+  const showCompany = () => {
+    setMobileView("company");
   };
 
   const showMainMenu = () => {
@@ -57,7 +72,7 @@ const Navbar = () => {
     }
   };
 
-  const featureMenuVariants = {
+  const subMenuVariants = {
     closed: {
       opacity: 0,
       x: "100%",
@@ -140,15 +155,15 @@ const Navbar = () => {
                 )}
               </motion.a>
 
-              {/* Features Dropdown */}
+              {/* Solutions Dropdown */}
               <motion.div
                 className="relative"
-                onMouseEnter={() => setIsDropdownOpen(true)}
-                onMouseLeave={() => setIsDropdownOpen(false)}
+                onMouseEnter={() => setIsSolutionsDropdownOpen(true)}
+                onMouseLeave={() => setIsSolutionsDropdownOpen(false)}
                 whileHover={{ scale: 1.05 }}
               >
                 <motion.button 
-                  className={`flex items-center gap-1 py-2 transition ${isDropdownOpen ? 'text-orange-400' : 'hover:text-orange-400'}`}
+                  className={`flex items-center gap-1 py-2 transition ${activeLink === 'solutions' || isSolutionsDropdownOpen ? 'text-orange-400' : 'hover:text-orange-400'}`}
                   whileTap={tapEffect}
                 >
                   Solutions
@@ -158,7 +173,7 @@ const Navbar = () => {
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    animate={{ rotate: isDropdownOpen ? 180 : 0 }}
+                    animate={{ rotate: isSolutionsDropdownOpen ? 180 : 0 }}
                     transition={{ duration: 0.2 }}
                   >
                     <path
@@ -170,9 +185,9 @@ const Navbar = () => {
                   </motion.svg>
                 </motion.button>
 
-                {/* Dropdown Menu */}
+                {/* Solutions Dropdown Menu */}
                 <AnimatePresence>
-                  {isDropdownOpen && (
+                  {isSolutionsDropdownOpen && (
                     <motion.div
                       initial={{ opacity: 0, y: -10, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -182,10 +197,10 @@ const Navbar = () => {
                     >
                       <ul className="py-2 text-sm text-gray-300">
                         {[
-                          { href: "/features/web-development", text: "Website Development" },
-                          { href: "/features/mobile-app-development", text: "Mobile App Development" },
-                          { href: "/features/software-development", text: "Software Development" },
-                          { href: "/features/hosting-and-mails", text: "Hosting & Business Email" }
+                          { href: "/features/web-development", text: "Website Development", id: "solutions" },
+                          { href: "/features/mobile-app-development", text: "Mobile App Development", id: "solutions" },
+                          { href: "/features/software-development", text: "Software Development", id: "solutions" },
+                          { href: "/features/hosting-and-mails", text: "Hosting & Business Email", id: "solutions" }
                         ].map((item, index) => (
                           <motion.li
                             key={index}
@@ -196,7 +211,75 @@ const Navbar = () => {
                             <a
                               href={item.href}
                               className="block px-4 py-2 hover:bg-gray-800 hover:text-orange-400 transition-all duration-200"
-                              onClick={() => setActiveLink('features')}
+                              onClick={() => setActiveLink(item.id)}
+                            >
+                              {item.text}
+                            </a>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+
+              {/* Company Dropdown */}
+              <motion.div
+                className="relative"
+                onMouseEnter={() => setIsCompanyDropdownOpen(true)}
+                onMouseLeave={() => setIsCompanyDropdownOpen(false)}
+                whileHover={{ scale: 1.05 }}
+              >
+                <motion.button 
+                  className={`flex items-center gap-1 py-2 transition ${activeLink === 'contact' || activeLink === 'about' || activeLink === 'projects' || activeLink === 'popia' || isCompanyDropdownOpen ? 'text-orange-400' : 'hover:text-orange-400'}`}
+                  whileTap={tapEffect}
+                >
+                  Company
+                  <motion.svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    animate={{ rotate: isCompanyDropdownOpen ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </motion.svg>
+                </motion.button>
+
+                {/* Company Dropdown Menu */}
+                <AnimatePresence>
+                  {isCompanyDropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute left-0 mt-2 w-48 bg-black/95 rounded-md shadow-lg border border-gray-700 z-50 backdrop-blur-md"
+                    >
+                      <ul className="py-2 text-sm text-gray-300">
+                        {[
+                          { href: "/contact-us", text: "Contact", id: "contact" },
+                          { href: "/about-us", text: "About Us", id: "about" },
+                          { href: "/projects", text: "Projects", id: "projects" },
+                          { href: "/popia", text: "POPIA", id: "popia" }
+                        ].map((item, index) => (
+                          <motion.li
+                            key={index}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                          >
+                            <a
+                              href={item.href}
+                              className={`block px-4 py-2 hover:bg-gray-800 hover:text-orange-400 transition-all duration-200 ${activeLink === item.id ? 'text-orange-400' : ''}`}
+                              onClick={() => setActiveLink(item.id)}
                             >
                               {item.text}
                             </a>
@@ -217,23 +300,6 @@ const Navbar = () => {
               >
                 Pricing
                 {activeLink === 'pricing' && (
-                  <motion.div 
-                    className="absolute bottom-0 left-0 w-full h-0.5 bg-orange-400"
-                    layoutId="activeIndicator"
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                  />
-                )}
-              </motion.a>
-
-              <motion.a 
-                href="/contact-us" 
-                className={`relative py-2 transition ${activeLink === 'contact' ? 'text-orange-400' : 'hover:text-orange-400'}`}
-                whileHover={hoverEffect}
-                whileTap={tapEffect}
-                onClick={() => setActiveLink('contact')}
-              >
-                Contact
-                {activeLink === 'contact' && (
                   <motion.div 
                     className="absolute bottom-0 left-0 w-full h-0.5 bg-orange-400"
                     layoutId="activeIndicator"
@@ -368,24 +434,43 @@ const Navbar = () => {
                     {/* Nav Items */}
                     {[
                       { href: "/", text: "Home", id: "home" },
-                      { href: "#", text: "Solutions", id: "features", action: showFeatures },
-                      { href: "#pricing", text: "Pricing", id: "pricing" },
-                      { href: "/contact-us", text: "Contact", id: "contact" }
+                      { href: "#", text: "Solutions", id: "solutions", action: showSolutions, hasDropdown: true },
+                      { href: "#", text: "Company", id: "company", action: showCompany, hasDropdown: true },
+                      { href: "#pricing", text: "Pricing", id: "pricing" }
                     ].map((item, index) => (
-                      <motion.a
+                      <motion.div
                         key={index}
-                        href={item.action ? undefined : item.href}
-                        onClick={item.action ? item.action : () => handleLinkClick(item.id)}
-                        className={`text-xl font-medium w-full text-center py-3 rounded-lg transition-all ${activeLink === item.id ? 'bg-gradient-to-r from-orange-500/20 to-pink-500/20 text-orange-400' : 'text-white hover:text-orange-400'}`}
+                        className="w-full"
                         variants={itemVariants}
                         initial="closed"
                         animate="open"
                         transition={{ delay: index * 0.1 + 0.2 }}
-                        whileHover={{ scale: 1.05, backgroundColor: "rgba(249, 115, 22, 0.1)" }}
-                        whileTap={{ scale: 0.95 }}
                       >
-                        {item.text}
-                      </motion.a>
+                        <div
+                          onClick={item.action ? item.action : () => handleLinkClick(item.id)}
+                          className={`flex items-center justify-between text-xl font-medium w-full text-center py-3 rounded-lg transition-all ${activeLink === item.id ? 'bg-gradient-to-r from-orange-500/20 to-pink-500/20 text-orange-400' : 'text-white hover:text-orange-400'}`}
+                        >
+                          <span className="flex-grow">{item.text}</span>
+                          {item.hasDropdown && (
+                            <motion.svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="w-5 h-5 mr-2"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              animate={{ rotate: mobileView !== "main" ? 180 : 0 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M19 9l-7 7-7-7"
+                              />
+                            </motion.svg>
+                          )}
+                        </div>
+                      </motion.div>
                     ))}
 
                     {/* CTA Button */}
@@ -409,11 +494,11 @@ const Navbar = () => {
                 </motion.div>
               )}
 
-              {/* Features Submenu */}
-              {mobileView === "features" && (
+              {/* Solutions Submenu */}
+              {mobileView === "solutions" && (
                 <motion.div
-                  key="features-menu"
-                  variants={featureMenuVariants}
+                  key="solutions-menu"
+                  variants={subMenuVariants}
                   initial="closed"
                   animate="open"
                   exit="closed"
@@ -447,18 +532,82 @@ const Navbar = () => {
                       Our services
                     </motion.h3>
                     
-                    {/* Feature Items */}
+                    {/* Solutions Items */}
                     {[
-                      { href: "/features/web-development", text: "Website Development" },
-                      { href: "/features/mobile-app-development", text: "Mobile App Development" },
-                      { href: "/features/software-development", text: "Software Development" },
-                      { href: "/features/hosting-and-mails", text: "Hosting & Business Email" }
+                      { href: "/features/web-development", text: "Website Development", id: "solutions" },
+                      { href: "/features/mobile-app-development", text: "Mobile App Development", id: "solutions" },
+                      { href: "/features/software-development", text: "Software Development", id: "solutions" },
+                      { href: "/features/hosting-and-mails", text: "Hosting & Business Email", id: "solutions" }
                     ].map((item, index) => (
                       <motion.a
                         key={index}
                         href={item.href}
-                        onClick={toggleMenu}
+                        onClick={() => handleLinkClick(item.id)}
                         className="text-xl font-medium w-full text-center py-3 rounded-lg text-white hover:bg-gradient-to-r hover:from-orange-500/20 hover:to-pink-500/20 hover:text-orange-400 transition-all"
+                        variants={itemVariants}
+                        initial="closed"
+                        animate="open"
+                        transition={{ delay: index * 0.1 + 0.2 }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {item.text}
+                      </motion.a>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Company Submenu */}
+              {mobileView === "company" && (
+                <motion.div
+                  key="company-menu"
+                  variants={subMenuVariants}
+                  initial="closed"
+                  animate="open"
+                  exit="closed"
+                  className="relative w-80 p-[2px] rounded-2xl bg-gradient-to-r from-orange-500 to-pink-500"
+                >
+                  <div className="bg-black/95 rounded-2xl p-8 flex flex-col items-center space-y-6 backdrop-blur-md">
+                    {/* Back Button */}
+                    <motion.button
+                      onClick={showMainMenu}
+                      className="self-start flex items-center text-orange-400 mb-2"
+                      whileHover={{ x: -5 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <svg 
+                        className="w-5 h-5 mr-2" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+                      </svg>
+                      Back
+                    </motion.button>
+                    
+                    <motion.h3 
+                      className=" uppercase text-2xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent"
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 }}
+                    >
+                      Company
+                    </motion.h3>
+                    
+                    {/* Company Items */}
+                    {[
+                      { href: "/contact-us", text: "Contact", id: "contact" },
+                      { href: "/about-us", text: "About Us", id: "about" },
+                      { href: "/projects", text: "Projects", id: "projects" },
+                      { href: "/popia", text: "POPIA", id: "popia" }
+                    ].map((item, index) => (
+                      <motion.a
+                        key={index}
+                        href={item.href}
+                        onClick={() => handleLinkClick(item.id)}
+                        className={`text-xl font-medium w-full text-center py-3 rounded-lg transition-all ${activeLink === item.id ? 'bg-gradient-to-r from-orange-500/20 to-pink-500/20 text-orange-400' : 'text-white hover:bg-gradient-to-r hover:from-orange-500/20 hover:to-pink-500/20 hover:text-orange-400'}`}
                         variants={itemVariants}
                         initial="closed"
                         animate="open"
