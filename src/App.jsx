@@ -79,8 +79,8 @@ const App = () => {
                 <SEO
                   title="Our Web Development Projects | REALNET"
                   description="View our portfolio of professional website development projects for South African businesses. E-commerce, business websites, web applications and more."
-                  canonicalUrl="https://realnet.co.za/features/web-development/live-projects"
-                ogType="service"
+                  canonicalUrl="https://realnet.co.za/features/web-development/live-projects" // ← WRONG DOMAIN
+                  ogType="service"
                   keywords={[
                     "web development south africa",
                     "website design pretoria",
@@ -89,7 +89,6 @@ const App = () => {
                     "ecommerce development",
                     "Website development johannesburg",
                   ]}
-                
                 />
                 <WebProjects />
               </>

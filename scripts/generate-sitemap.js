@@ -7,6 +7,7 @@ const BASE_URL = 'https://realnet-web.co.za';
 const pages = [
   { url: '/', priority: 1.0, changefreq: 'monthly' },
   { url: '/features/web-development', priority: 0.9, changefreq: 'monthly' },
+  { url: '/features/web-development/live-projects', priority: 0.9, changefreq: 'monthly' }, // new SEO page
   { url: '/features/mobile-app-development', priority: 0.9, changefreq: 'monthly' },
   { url: '/features/software-development', priority: 0.9, changefreq: 'monthly' },
   { url: '/features/hosting-and-mails', priority: 0.9, changefreq: 'monthly' },
