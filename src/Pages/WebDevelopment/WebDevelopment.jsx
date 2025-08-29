@@ -158,7 +158,7 @@ const WebsiteDevelopment = () => {
                   </button>
                 </a>
 
-                <a href="http://localhost:5173/features/web-development/live-projects">
+                <a href="/features/web-development/live-projects">
                   <button className="px-6 py-3 border border-orange-500 text-orange-300 font-semibold rounded-lg shadow-sm hover:bg-orange-500/10 transition-all duration-300">
                     View Our Projects
                   </button>
