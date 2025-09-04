@@ -193,12 +193,12 @@ const App = () => {
             element={
               <>
                 <SEO
-                  title="Get Quotation for your platform | Website & Mobile App Development"
+                  title="Free Quotation | Website & Mobile App Development"
                   description="Expert mobile app development for iOS and Android in South Africa. Cross-platform and native applications built with React Native, Flutter, and Swift. Serving Pretoria, Johannesburg, and Cape Town."
                   canonicalUrl="https://realnet-web.co.za/new-project/request-quotation"
                   ogType="service"
                   keywords={[
-                    "mobile app development south africa",
+                    "Website & app development south africa",
                     "iOS apps pretoria",
                     "Android apps johannesburg",
                     "React Native development",

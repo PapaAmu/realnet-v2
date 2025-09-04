@@ -11,6 +11,7 @@ const pages = [
   { url: '/features/mobile-app-development', priority: 0.9, changefreq: 'monthly' },
   { url: '/features/software-development', priority: 0.9, changefreq: 'monthly' },
   { url: '/features/hosting-and-mails', priority: 0.9, changefreq: 'monthly' },
+  { url: '/new-project/request-quotation', priority: 0.9, changefreq: 'monthly' },
   { url: '/contact-us', priority: 0.8, changefreq: 'yearly' }
 ];
 
