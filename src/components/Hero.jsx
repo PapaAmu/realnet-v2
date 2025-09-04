@@ -20,7 +20,7 @@ const Hero = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false }}
               transition={{ duration: 1, ease: "easeOut" }}
-              className="text-3xl font-bold tracking-tight sm:text-6xl lg:text-5xl text-white"
+              className="text-3xl font-light tracking-tight sm:text-6xl lg:text-5xl text-white"
             >
               Quality Development Of
             </motion.h1>
@@ -31,7 +31,7 @@ const Hero = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: false }}
               transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
-              className="block text-orange-400 font-extrabold tracking-tight text-5xl sm:text-6xl lg:text-9xl leading-tight"
+              className="block bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-pink-400 font-extrabold tracking-tight text-7xl sm:text-6xl lg:text-9xl leading-tight"
               style={{
                 minHeight: "1.2em",
                 display: "inline-block",
@@ -53,7 +53,7 @@ const Hero = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false }}
               transition={{ duration: 1, delay: 1.5, ease: "easeOut" }}
-              className="text-3xl font-bold tracking-tight sm:text-6xl lg:text-5xl text-white"
+              className="text-3xl font-light tracking-tight sm:text-6xl lg:text-5xl text-white"
             >
               That Build Your Business
             </motion.h2>
@@ -64,7 +64,7 @@ const Hero = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: false }}
               transition={{ duration: 1, delay: 2, ease: "easeOut" }}
-              className="mx-auto mt-20 mb-8 max-w-2xl text-lg text-slate-300"
+              className="mx-auto mt-20 mb-8 max-w-2xl text-lg text-orange-400"
             >
               "Empowering Businesses with Dignity and Digital Excellence."
             </motion.p>
@@ -86,7 +86,7 @@ const Hero = () => {
             >
               <motion.a
                 href="/#joinsection"
-                className="rounded-lg px-6 py-3 font-medium bg-orange-400 text-slate-900 hover:bg-orange-300 transition"
+                className="rounded-lg px-6 py-3 font-medium bg-gradient-to-r from-orange-500 to-pink-500 text-white hover:bg-orange-300 transition"
                 variants={{
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0 },
@@ -94,15 +94,7 @@ const Hero = () => {
               >
                 Get Started
               </motion.a>
-              <motion.button
-                className="rounded-lg border px-6 py-3 font-medium border-orange-400 text-orange-400 hover:bg-slate-700 transition"
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-              >
-                Learn More
-              </motion.button>
+              
             </motion.div>
           </div>
         </div>

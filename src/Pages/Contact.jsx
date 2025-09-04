@@ -5,11 +5,68 @@ import {
   FaPhone,
   FaEnvelope,
   FaMapMarkerAlt,
-  FaTwitter,
   FaFacebook,
   FaLinkedin,
   FaInstagram,
 } from "react-icons/fa";
+import { toast } from "react-toastify";
+
+// Custom loader component with advanced animations
+const AdvancedLoader = () => {
+  return (
+    <div className="absolute inset-0 flex items-center justify-center">
+      {/* Main spinner */}
+      <motion.div
+        className="w-8 h-8 border-4 border-white border-t-transparent rounded-full"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+      />
+      
+      {/* Orbiting particles */}
+      {[0, 1, 2].map((i) => (
+        <motion.div
+          key={i}
+          className="absolute w-2 h-2 bg-white rounded-full"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{
+            repeat: Infinity,
+            duration: 1.5,
+            repeatType: "reverse",
+            delay: i * 0.2,
+          }}
+        >
+          <motion.div
+            className="absolute inset-0 rounded-full"
+            animate={{
+              x: [0, 20 * Math.cos((i * 2 * Math.PI) / 3)],
+              y: [0, 20 * Math.sin((i * 2 * Math.PI) / 3)],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              repeatType: "reverse",
+              delay: i * 0.2,
+            }}
+          />
+        </motion.div>
+      ))}
+      
+      {/* Pulsing rings */}
+      <motion.div
+        className="absolute inset-0 border-2 border-white rounded-full"
+        animate={{ scale: [1, 1.5, 1], opacity: [1, 0, 1] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      />
+      
+      <motion.div
+        className="absolute inset-0 border border-white rounded-full"
+        animate={{ scale: [1, 1.8, 1], opacity: [0.7, 0, 0.7] }}
+        transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
+      />
+    </div>
+  );
+};
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -18,6 +75,7 @@ const Contact = () => {
     subject: "",
     message: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -26,11 +84,32 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    // You would typically send this data to your backend
+    setIsLoading(true);
+
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/messages`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        toast.success("Message sent successfully!");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        toast.error(data.message || "Failed to send message.");
+      }
+    } catch (error) {
+      toast.error("An error occurred. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -162,12 +241,31 @@ const Contact = () => {
               </div>
 
               <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={isLoading ? {} : { scale: 1.02 }}
+                whileTap={isLoading ? {} : { scale: 0.98 }}
                 type="submit"
-                className="w-full bg-gradient-to-r from-orange-400 to-pink-500 text-white font-semibold py-3 px-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-200"
+                disabled={isLoading}
+                className="w-full bg-gradient-to-r from-orange-400 to-pink-500 text-white font-semibold py-4 px-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 relative overflow-hidden"
               >
-                Send Message
+                <motion.span
+                  animate={{ opacity: isLoading ? 0 : 1, y: isLoading ? 10 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="flex items-center justify-center"
+                >
+                  Send Message
+                </motion.span>
+                
+                {isLoading && <AdvancedLoader />}
+                
+                {/* Animated progress bar that fills from left to right */}
+                {isLoading && (
+                  <motion.div
+                    className="absolute bottom-0 left-0 h-1 bg-white/50"
+                    initial={{ width: 0 }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: 3, ease: "linear" }}
+                  />
+                )}
               </motion.button>
             </form>
           </motion.div>

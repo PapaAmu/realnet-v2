@@ -147,9 +147,11 @@ const Industries = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.3 }}
         >
+          <a href="/contact-us">
           <button className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-all duration-300">
             Contact Us Today
           </button>
+        </a>
         </motion.div>
       </div>
     </div>

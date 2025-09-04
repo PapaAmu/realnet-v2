@@ -316,14 +316,14 @@ const Navbar = () => {
               whileTap={{ scale: 0.95 }}
             >
               <motion.a
-                href="/#joinsection"
+                href="/new-project/request-quotation"
                 className="px-4 py-2 bg-gradient-to-r from-orange-500 to-pink-500 rounded-md text-white font-semibold flex items-center"
                 whileHover={{ 
                   background: "linear-gradient(to right, #ec4899, #f97316)",
                   transition: { duration: 0.3 }
                 }}
               >
-                GET QUOTE
+                FREE QUOTE
                 <motion.span
                   animate={{ x: [0, 4, 0] }}
                   transition={{ repeat: Infinity, duration: 1.5 }}
@@ -475,7 +475,7 @@ const Navbar = () => {
 
                     {/* CTA Button */}
                     <motion.a
-                      href="/#joinsection"
+                      href="/new-project/request-quotation"
                       onClick={toggleMenu}
                       className="mt-6 px-6 py-3 bg-gradient-to-r from-orange-500 to-pink-500 rounded-lg text-white font-semibold w-full text-center"
                       variants={itemVariants}

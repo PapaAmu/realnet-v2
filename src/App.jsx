@@ -15,6 +15,7 @@ import NotFoundPage from "./Pages/NotFoundPage";
 import SEO from "./SEO";
 import AnalyticsTracker from "./components/AnalyticsTracker";
 import WebProjects from "./Pages/WebDevelopment/WebProjects";
+import Quotation from "./Pages/Quotation";
 
 const App = () => {
   const helmetContext = {};
@@ -183,6 +184,29 @@ const App = () => {
                   ]}
                 />
                 <Contact />
+              </>
+            }
+          />
+
+          <Route
+            path="/new-project/request-quotation"
+            element={
+              <>
+                <SEO
+                  title="Get Quotation for your platform | Website & Mobile App Development"
+                  description="Expert mobile app development for iOS and Android in South Africa. Cross-platform and native applications built with React Native, Flutter, and Swift. Serving Pretoria, Johannesburg, and Cape Town."
+                  canonicalUrl="https://realnet-web.co.za/new-project/request-quotation"
+                  ogType="service"
+                  keywords={[
+                    "mobile app development south africa",
+                    "iOS apps pretoria",
+                    "Android apps johannesburg",
+                    "React Native development",
+                    "app developers cape town",
+                    "mobile applications za",
+                  ]}
+                />
+                <Quotation />
               </>
             }
           />

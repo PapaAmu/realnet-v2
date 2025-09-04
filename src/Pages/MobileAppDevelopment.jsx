@@ -239,9 +239,9 @@ const MobileAppDevelopment = () => {
               animate="visible"
               variants={fadeIn}
             >
-              <div className="mb-6">
+              <div className="mb-12">
                 <motion.span 
-                  className="px-4 py-2 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full text-sm font-semibold inline-block"
+                  className="px-4  bg-gradient-to-r from-orange-500 text-black to-pink-500 rounded-r-full text-sm font-semibold inline-block"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
