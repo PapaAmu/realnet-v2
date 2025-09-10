@@ -263,7 +263,7 @@ const App = () => {
           />
 
           <Route
-            path="/comppany/popia-act"
+            path="/popia-act"
             element={
               <>
                 <SEO

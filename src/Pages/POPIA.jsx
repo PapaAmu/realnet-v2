@@ -275,7 +275,7 @@ const POPIA = () => {
                 <div className="text-left">
                   <p className="font-semibold text-gray-900">Email</p>
                   <a href="mailto:privacy@realnet-web.co.za" className="text-orange-500 hover:underline">
-                    privacy@realnet-web.co.za
+                    info@realnet-web.co.za
                   </a>
                 </div>
               </div>
@@ -287,7 +287,7 @@ const POPIA = () => {
                 <div className="text-left">
                   <p className="font-semibold text-gray-900">Phone</p>
                   <a href="tel:+27123456789" className="text-orange-500 hover:underline">
-                    +27 12 345 6789
+                    +27 640 388 883
                   </a>
                 </div>
               </div>
@@ -296,7 +296,7 @@ const POPIA = () => {
             <div className="mt-8 p-4 bg-gradient-to-r from-orange-50 to-pink-50 rounded-lg">
               <p className="text-sm text-gray-600">
                 <strong>Information Officer:</strong> REALNET Web Solutions<br />
-                <strong>Physical Address:</strong> Pretoria, South Africa<br />
+                <strong>Physical Address:</strong> Midrand, South Africa<br />
                 <strong>Response Time:</strong> We will respond to privacy requests within 30 days as required by POPIA.
               </p>
             </div>
