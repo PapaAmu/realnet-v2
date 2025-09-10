@@ -26,25 +26,69 @@ const SEO = ({
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": siteName,
+    "alternateName": "REALNET",
+    "description": "Professional web development, mobile app development, and software solutions for South African businesses",
     "url": isBrowser ? window.location.origin : "https://realnet-web.co.za",
     "logo": `${isBrowser ? window.location.origin : "https://realnet-web.co.za"}/logo.png`,
+    "foundingDate": "2023",
+    "numberOfEmployees": "2-10",
     "sameAs": [
       "https://twitter.com/realnet_web",
       "https://www.linkedin.com/company/realnet-web-solutions-pty",
-      "https://web.facebook.com/profile.php?id=61565067420433"
+      "https://web.facebook.com/profile.php?id=61565067420433",
+      "https://instagram.com/realnet_web"
     ],
     "contactPoint": [{
       "@type": "ContactPoint",
       "telephone": "+27-64-038-8883",
+      "email": "lukhele@realnet-web.co.za",
       "contactType": "Customer Service",
       "areaServed": "ZA",
-      "availableLanguage": ["English", "Afrikaans"]
+      "availableLanguage": ["English", "Afrikaans"],
+      "contactOption": "TollFree"
     }],
     "address": {
       "@type": "PostalAddress",
-      "addressCountry": "ZA",
+      "streetAddress": "Matsau Street, Ivory Park",
+      "addressLocality": "Midrand",
       "addressRegion": "Gauteng",
-      "addressLocality": "Pretoria"
+      "postalCode": "1689",
+      "addressCountry": "ZA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "-25.9083",
+      "longitude": "28.1162"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Web Development Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Website Development",
+            "description": "Custom website development services"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Mobile App Development",
+            "description": "iOS and Android app development"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Web Hosting",
+            "description": "Reliable web hosting services"
+          }
+        }
+      ]
     }
   };
 
