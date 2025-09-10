@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import RelatedContent from "../../components/RelatedContent";
 import {
   FaDesktop,
   FaShoppingCart,
@@ -126,7 +127,7 @@ const WebsiteDevelopment = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white overflow-hidden">
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 overflow-hidden">
+      <section className="relative py-20 lg:py-32 overflow-hidden pt-8">
         <div className="absolute inset-0 z-0 opacity-10">
           <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-pink-500/10"></div>
           <div className="absolute inset-0 bg-[url(https://i.pinimg.com/1200x/b8/05/35/b80535a7d8dabb5eb080ba7ab8d619f0.jpg)] bg-cover bg-center mix-blend-overlay"></div>
@@ -383,6 +384,9 @@ const WebsiteDevelopment = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Related Content Section */}
+      <RelatedContent currentPage="web-development" />
     </div>
   );
 };

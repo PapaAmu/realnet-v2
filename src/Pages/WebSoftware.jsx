@@ -117,7 +117,7 @@ const WebSoftware = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white overflow-hidden">
       {/* Hero Section with Code Background */}
-      <section className="relative py-20 lg:py-32 overflow-hidden">
+      <section className="relative py-20 lg:py-32 overflow-hidden pt-8">
         <div className="absolute inset-0 z-0 opacity-10">
           <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-pink-500/10"></div>
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')] bg-cover bg-center mix-blend-overlay"></div>
