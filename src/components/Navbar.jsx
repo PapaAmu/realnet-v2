@@ -110,7 +110,7 @@ const Navbar = () => {
   return (
     <div>
       <motion.nav 
-        className={`w-full fixed top-0 left-0 z-50 backdrop-blur-md shadow-md ${scrolled ? 'bg-black/90' : 'bg-black/70'} transition-colors duration-300`}
+        className={`w-full fixed top-0 left-0 z-50 backdrop-blur-md shadow-md ${scrolled ? 'bg-black/90' : 'bg-black'} transition-colors duration-300`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
@@ -267,8 +267,8 @@ const Navbar = () => {
                         {[
                           { href: "/contact-us", text: "Contact", id: "contact" },
                           { href: "/about-us", text: "About Us", id: "about" },
-                          { href: "/projects", text: "Projects", id: "projects" },
-                          { href: "/popia", text: "POPIA", id: "popia" }
+                          { href: "/features/web-development/live-projects", text: "Projects", id: "projects" },
+                          { href: "/popia-act", text: "POPIA", id: "popia" }
                         ].map((item, index) => (
                           <motion.li
                             key={index}
@@ -436,7 +436,7 @@ const Navbar = () => {
                       { href: "/", text: "Home", id: "home" },
                       { href: "#", text: "Solutions", id: "solutions", action: showSolutions, hasDropdown: true },
                       { href: "#", text: "Company", id: "company", action: showCompany, hasDropdown: true },
-                      { href: "#resources", text: "Resources", id: "resources" }
+                      { href: "/resources", text: "Resources", id: "resources" }
                     ].map((item, index) => (
                       <motion.div
                         key={index}
@@ -446,12 +446,12 @@ const Navbar = () => {
                         animate="open"
                         transition={{ delay: index * 0.1 + 0.2 }}
                       >
-                        <div
-                          onClick={item.action ? item.action : () => handleLinkClick(item.id)}
-                          className={`flex items-center justify-between text-xl font-medium w-full text-center py-3 rounded-lg transition-all ${activeLink === item.id ? 'bg-gradient-to-r from-orange-500/20 to-pink-500/20 text-orange-400' : 'text-white hover:text-orange-400'}`}
-                        >
-                          <span className="flex-grow">{item.text}</span>
-                          {item.hasDropdown && (
+                        {item.hasDropdown ? (
+                          <div
+                            onClick={item.action}
+                            className={`flex items-center justify-between text-xl font-medium w-full text-center py-3 rounded-lg transition-all cursor-pointer ${activeLink === item.id ? 'bg-gradient-to-r from-orange-500/20 to-pink-500/20 text-orange-400' : 'text-white hover:text-orange-400'}`}
+                          >
+                            <span className="flex-grow">{item.text}</span>
                             <motion.svg
                               xmlns="http://www.w3.org/2000/svg"
                               className="w-5 h-5 mr-2"
@@ -468,8 +468,16 @@ const Navbar = () => {
                                 d="M19 9l-7 7-7-7"
                               />
                             </motion.svg>
-                          )}
-                        </div>
+                          </div>
+                        ) : (
+                          <a
+                            href={item.href}
+                            onClick={() => handleLinkClick(item.id)}
+                            className={`flex items-center justify-between text-xl font-medium w-full text-center py-3 rounded-lg transition-all ${activeLink === item.id ? 'bg-gradient-to-r from-orange-500/20 to-pink-500/20 text-orange-400' : 'text-white hover:text-orange-400'}`}
+                          >
+                            <span className="flex-grow">{item.text}</span>
+                          </a>
+                        )}
                       </motion.div>
                     ))}
 
@@ -600,8 +608,8 @@ const Navbar = () => {
                     {[
                       { href: "/contact-us", text: "Contact", id: "contact" },
                       { href: "/about-us", text: "About Us", id: "about" },
-                      { href: "/projects", text: "Projects", id: "projects" },
-                      { href: "/popia", text: "POPIA", id: "popia" }
+                      { href: "/features/web-development/live-projects", text: "Projects", id: "projects" },
+                      { href: "/popia-act", text: "POPIA", id: "popia" }
                     ].map((item, index) => (
                       <motion.a
                         key={index}

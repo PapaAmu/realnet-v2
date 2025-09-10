@@ -17,6 +17,8 @@ import AnalyticsTracker from "./components/AnalyticsTracker";
 import WebProjects from "./Pages/WebDevelopment/WebProjects";
 import Quotation from "./Pages/Quotation";
 import Resources from "./Pages/Resources";
+import AboutUs from "./Pages/AboutUs";
+import POPIA from "./Pages/POPIA";
 import Breadcrumbs from "./components/Breadcrumbs";
 
 const App = () => {
@@ -233,6 +235,52 @@ const App = () => {
                   ]}
                 />
                 <Resources />
+              </>
+            }
+          />
+
+          <Route
+            path="/about-us"
+            element={
+              <>
+                <SEO
+                  title="About Us | REALNET Web Solutions | Web & Mobile Development Company"
+                  description="Learn about REALNET Web Solutions, a leading web and mobile development company in South Africa. Our mission, values, team, and commitment to delivering exceptional digital solutions."
+                  canonicalUrl="https://realnet-web.co.za/about-us"
+                  ogType="website"
+                  keywords={[
+                    "about realnet web solutions",
+                    "web development company south africa",
+                    "mobile app developers pretoria",
+                    "software development team",
+                    "digital agency gauteng",
+                    "web design company johannesburg"
+                  ]}
+                />
+                <AboutUs />
+              </>
+            }
+          />
+
+          <Route
+            path="/comppany/popia-act"
+            element={
+              <>
+                <SEO
+                  title="POPIA Compliance & Privacy Policy | REALNET Web Solutions"
+                  description="Our commitment to protecting your privacy and complying with South Africa's Protection of Personal Information Act (POPIA). Learn about your rights and how we handle your data."
+                  canonicalUrl="https://realnet-web.co.za/popia-act"
+                  ogType="article"
+                  keywords={[
+                    "POPIA compliance south africa",
+                    "privacy policy",
+                    "data protection",
+                    "personal information act",
+                    "privacy rights",
+                    "data security"
+                  ]}
+                />
+                <POPIA />
               </>
             }
           />

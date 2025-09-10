@@ -214,7 +214,7 @@ const CookieConsent = () => {
 
           {/* Policy Link */}
           <p className="text-xs text-gray-500 mt-4">
-            By using our website, you agree to our <a href="#" className="text-orange-500 hover:underline">Cookie Policy</a> and <a href="#" className="text-orange-500 hover:underline">Privacy Policy</a>.
+            By using our website, you agree to our <a href="/popia" className="text-orange-500 hover:underline">Cookie Policy</a> and <a href="/popia" className="text-orange-500 hover:underline">Privacy Policy</a>.
           </p>
         </div>
       </motion.div>

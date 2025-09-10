@@ -13,7 +13,9 @@ const pages = [
   { url: '/features/hosting-and-mails', priority: 0.9, changefreq: 'monthly' },
   { url: '/resources', priority: 0.8, changefreq: 'weekly' },
   { url: '/new-project/request-quotation', priority: 0.8, changefreq: 'monthly' },
-  { url: '/contact-us', priority: 0.7, changefreq: 'yearly' }
+  { url: '/contact-us', priority: 0.7, changefreq: 'yearly' },
+  { url: '/about-us', priority: 0.7, changefreq: 'yearly' },
+  { url: '/popi-act', priority: 0.7, changefreq: 'yearly' },
 ];
 
 const generateSitemap = () => {
