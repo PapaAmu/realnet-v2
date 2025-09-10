@@ -64,9 +64,19 @@ const Hero = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: false }}
               transition={{ duration: 1, delay: 2, ease: "easeOut" }}
-              className="mx-auto mt-20 mb-8 max-w-2xl text-lg text-orange-400"
+              className="mx-auto mt-20 mb-4 max-w-3xl text-lg text-orange-400"
             >
-              "Empowering Businesses with Dignity and Digital Excellence."
+              Professional web development, mobile app development, and software solutions for South African businesses.
+            </motion.p>
+            
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: false }}
+              transition={{ duration: 1, delay: 2.2, ease: "easeOut" }}
+              className="mx-auto mb-8 max-w-2xl text-base text-gray-300"
+            >
+              Serving Pretoria, Johannesburg, Cape Town, and nationwide. From responsive websites to custom mobile apps - we turn your digital vision into reality.
             </motion.p>
 
             {/* Buttons */}

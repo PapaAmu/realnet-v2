@@ -1,36 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 const faqs = [
   {
-    question: "What services does RealNet Web Solutions offer?",
+    question: "What web development services does REALNET offer in South Africa?",
     answer:
-      "We specialize in web design, software development, mobile app development, SEO, hosting, and digital marketing solutions. Our goal is to help businesses grow by building modern, secure, and scalable digital products.",
+      "REALNET Web Solutions provides comprehensive web development services across South Africa, including custom website design, e-commerce development, mobile app development, software solutions, web hosting, and digital marketing. We serve businesses in Pretoria, Johannesburg, Cape Town, and nationwide, focusing on modern, responsive, and SEO-optimized websites.",
   },
   {
-    question: "Do you build custom websites or use templates?",
+    question: "How much does website development cost in South Africa?",
     answer:
-      "We primarily build custom websites tailored to your business needs. However, we can also work with high-quality templates when clients need a faster and more cost-effective solution.",
+      "Our website development costs vary based on your needs: Starter websites range from R3,499-R5,999, E-commerce stores from R6,000-R19,999, and advanced custom solutions from R20,000+. We offer free consultations to provide accurate quotes based on your specific requirements and budget.",
   },
   {
-    question: "Do you provide hosting and maintenance?",
+    question: "Do you provide website hosting and maintenance services?",
     answer:
-      "Yes! We offer secure and reliable web hosting along with ongoing website maintenance, updates, and technical support to keep your digital solutions running smoothly.",
+      "Yes! We offer reliable South African web hosting with 99.9% uptime guarantee, business email solutions, domain registration, and comprehensive website maintenance packages. Our hosting includes regular backups, security updates, performance monitoring, and 24/7 technical support.",
   },
   {
-    question: "Can you integrate third-party systems and APIs?",
+    question: "Can you develop mobile apps for iOS and Android?",
     answer:
-      "Absolutely! We can integrate payment gateways, booking systems, analytics tools, CRM software, and any other third-party services needed to enhance your business operations.",
+      "Absolutely! We develop native and cross-platform mobile applications for iOS and Android using React Native, Flutter, and Swift. Our mobile apps are optimized for performance, user experience, and can integrate with your existing business systems and APIs.",
   },
   {
-    question: "How long does it take to build a website or app?",
+    question: "How long does it take to develop a website or mobile app?",
     answer:
-      "Project timelines vary depending on complexity. Simple websites can take 1–3 weeks, while larger web apps or software projects may require several months. We provide clear timelines upfront.",
+      "Development timelines depend on project complexity: Simple business websites take 1-3 weeks, e-commerce sites 3-6 weeks, and complex web applications or mobile apps 2-6 months. We provide detailed project timelines and milestones during our initial consultation.",
   },
   {
-    question: "How do I get started with RealNet Web Solutions?",
+    question: "Do you offer SEO services to improve Google rankings?",
     answer:
-      "Simply contact us through our website, and we'll schedule a free consultation. We'll discuss your goals, plan a strategy, and help you choose the best digital solutions for your business.",
+      "Yes, we provide comprehensive SEO services including on-page optimization, technical SEO, content strategy, local SEO for South African businesses, and ongoing SEO maintenance. All our websites are built with SEO best practices to help you rank higher on Google and attract more customers.",
+  },
+  {
+    question: "Can you integrate payment gateways and third-party systems?",
+    answer:
+      "Definitely! We integrate various payment gateways (PayFast, PayGate, Stripe, PayPal), booking systems, CRM software, accounting systems, and other business tools. Our custom API development ensures seamless integration with your existing business processes.",
+  },
+  {
+    question: "Do you work with small businesses and startups in South Africa?",
+    answer:
+      "Yes, we specialize in helping small businesses and startups establish their online presence. We offer affordable starter packages, flexible payment terms, and scalable solutions that grow with your business. Our goal is to make professional web development accessible to all South African businesses.",
+  },
+  {
+    question: "How do I get started with REALNET Web Solutions?",
+    answer:
+      "Getting started is easy! Contact us through our website, WhatsApp (+27 64 038-8883), or email (lukhele@realnet-web.co.za) for a free consultation. We'll discuss your goals, provide recommendations, and create a customized proposal for your digital solution needs.",
   },
 ];
 
@@ -41,12 +57,36 @@ const FAQ = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  // Generate FAQ Schema.org structured data
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
   return (
-    <div className="bg-[linear-gradient(to_top_right,_rgba(255,255,255,1)_0%,_rgba(222,222,222,1)_50%)] pt-8 pb-24">
-      <div className="max-w-2xl mx-auto">
-        <h1 className="text-3xl font-bold text-center my-16">
-          Frequently Asked Questions
+    <>
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+      </Helmet>
+      
+      <div className="bg-[linear-gradient(to_top_right,_rgba(255,255,255,1)_0%,_rgba(222,222,222,1)_50%)] pt-8 pb-24">
+        <div className="max-w-4xl mx-auto px-4">
+        <h1 className="text-3xl md:text-4xl font-bold text-center my-16 text-gray-900">
+          Frequently Asked Questions About Our Services
         </h1>
+        <p className="text-lg text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+          Get answers to common questions about our web development, mobile app development, and digital services in South Africa.
+        </p>
 
         <div className="space-y-4">
           {faqs.map((faq, index) => (
@@ -96,6 +136,7 @@ const FAQ = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

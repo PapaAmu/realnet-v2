@@ -19,7 +19,7 @@ const Home = () => {
       <MobileAdvert />
       <OurStack />
       <Industries />
-      {/* <FAQ /> */}
+      <FAQ />
     </div>
   );
 };
