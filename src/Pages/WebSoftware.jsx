@@ -130,9 +130,7 @@ const WebSoftware = () => {
               animate="visible"
               variants={fadeIn}
             >
-              <div className="mb-6 py-12">
-                <span className="px-4 py-2 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full text-sm font-semibold">Web Development</span>
-              </div>
+              
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-pink-400">Web & Desktop Softwares</span> That Drive Growth
               </h1>

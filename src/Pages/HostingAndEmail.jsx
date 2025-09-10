@@ -303,15 +303,7 @@ const HostingAndEmail = () => {
               animate="visible"
               variants={fadeIn}
             >
-              <div className="mb-6 py-12">
-                <motion.span 
-                  className="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full text-sm font-semibold inline-block"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Infrastructure & Communication
-                </motion.span>
-              </div>
+              
               <motion.h1 
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
                 initial={{ opacity: 0, y: 20 }}

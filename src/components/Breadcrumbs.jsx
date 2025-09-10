@@ -72,7 +72,7 @@ const Breadcrumbs = ({ customPath = null, hideOnHome = true }) => {
         </script>
       </Helmet>
       
-      <nav className="bg-white border-b border-gray-200 py-4 mt-16 shadow-sm" aria-label="Breadcrumb">
+      <nav className="bg-gradient-to-r from-black to-orange-600  py-1 mt-16 shadow-sm" aria-label="Breadcrumb">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ol className="flex items-center space-x-3 text-sm font-medium">
             {breadcrumbItems.map((item, index) => (
@@ -82,7 +82,7 @@ const Breadcrumbs = ({ customPath = null, hideOnHome = true }) => {
                 )}
                 
                 {item.isLast ? (
-                  <span className="text-gray-800 font-semibold flex items-center">
+                  <span className="text-gray-300 font-semibold flex items-center">
                     {index === 0 && <FaHome className="mr-2 text-orange-600" />}
                     {item.name}
                   </span>

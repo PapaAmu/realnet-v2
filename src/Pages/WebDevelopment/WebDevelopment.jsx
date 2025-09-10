@@ -136,11 +136,7 @@ const WebsiteDevelopment = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div initial="hidden" animate="visible" variants={fadeIn}>
-              <div className="mb-6 py-12">
-                <span className="px-4 py-2 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full text-sm font-semibold">
-                  Web Development
-                </span>
-              </div>
+              
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
                 Professional{" "}
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-pink-400">
