@@ -28,6 +28,24 @@
     
     <!-- DNS Prefetch for performance -->
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    
+    <!-- Resource hints for better performance -->
+    <link rel="prefetch" href="/sitemap.xml">
+    
+    <!-- Critical CSS preload hints -->
+    <link rel="preload" href="/src/main.jsx" as="script">
+    
+    <!-- Additional meta tags for SEO -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+    
+    <!-- Geo meta tags for local SEO -->
+    <meta name="geo.region" content="ZA-GP">
+    <meta name="geo.placename" content="Pretoria, South Africa">
+    <meta name="geo.position" content="-25.9083;28.1162">
+    <meta name="ICBM" content="-25.9083, 28.1162">
     
     <!-- Canonical URL (will be dynamically updated by React Helmet) -->
     <link rel="canonical" href="https://realnet-web.co.za/" />

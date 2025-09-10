@@ -16,6 +16,8 @@ import SEO from "./SEO";
 import AnalyticsTracker from "./components/AnalyticsTracker";
 import WebProjects from "./Pages/WebDevelopment/WebProjects";
 import Quotation from "./Pages/Quotation";
+import Resources from "./Pages/Resources";
+import Breadcrumbs from "./components/Breadcrumbs";
 
 const App = () => {
   const helmetContext = {};
@@ -47,6 +49,7 @@ const App = () => {
         />
 
         <Navbar />
+        <Breadcrumbs />
         <Routes>
           <Route path="/" element={<Home />} />
 
@@ -80,7 +83,7 @@ const App = () => {
                 <SEO
                   title="Our Web Development Projects | REALNET"
                   description="View our portfolio of professional website development projects for South African businesses. E-commerce, business websites, web applications and more."
-                  canonicalUrl="https://realnet.co.za/features/web-development/live-projects" // ← WRONG DOMAIN
+                  canonicalUrl="https://realnet-web.co.za/features/web-development/live-projects"
                   ogType="service"
                   keywords={[
                     "web development south africa",
@@ -207,6 +210,29 @@ const App = () => {
                   ]}
                 />
                 <Quotation />
+              </>
+            }
+          />
+
+          <Route
+            path="/resources"
+            element={
+              <>
+                <SEO
+                  title="Web Development Resources & Guides | REALNET WEB SOLUTIONS"
+                  description="Expert insights, guides, and resources for web development, mobile apps, SEO, and digital marketing in South Africa. Stay updated with the latest industry trends and best practices."
+                  canonicalUrl="https://realnet-web.co.za/resources"
+                  ogType="website"
+                  keywords={[
+                    "web development resources",
+                    "mobile app guides", 
+                    "SEO tips south africa",
+                    "digital marketing resources",
+                    "web design guides",
+                    "programming tutorials"
+                  ]}
+                />
+                <Resources />
               </>
             }
           />

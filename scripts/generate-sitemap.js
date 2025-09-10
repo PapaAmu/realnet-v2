@@ -5,14 +5,15 @@ import { resolve } from 'path';
 const BASE_URL = 'https://realnet-web.co.za';
 
 const pages = [
-  { url: '/', priority: 1.0, changefreq: 'monthly' },
+  { url: '/', priority: 1.0, changefreq: 'weekly' },
   { url: '/features/web-development', priority: 0.9, changefreq: 'monthly' },
-  { url: '/features/web-development/live-projects', priority: 0.9, changefreq: 'monthly' }, // new SEO page
+  { url: '/features/web-development/live-projects', priority: 0.9, changefreq: 'weekly' },
   { url: '/features/mobile-app-development', priority: 0.9, changefreq: 'monthly' },
   { url: '/features/software-development', priority: 0.9, changefreq: 'monthly' },
   { url: '/features/hosting-and-mails', priority: 0.9, changefreq: 'monthly' },
-  { url: '/new-project/request-quotation', priority: 0.9, changefreq: 'monthly' },
-  { url: '/contact-us', priority: 0.8, changefreq: 'yearly' }
+  { url: '/resources', priority: 0.8, changefreq: 'weekly' },
+  { url: '/new-project/request-quotation', priority: 0.8, changefreq: 'monthly' },
+  { url: '/contact-us', priority: 0.7, changefreq: 'yearly' }
 ];
 
 const generateSitemap = () => {
