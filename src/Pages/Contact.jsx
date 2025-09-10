@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import bg_image from "../assets/images/bg_image.png";
+import { trackFormSubmission, trackEvent } from "../components/AnalyticsTracker";
 import {
   FaPhone,
   FaEnvelope,
@@ -101,6 +102,11 @@ const Contact = () => {
 
       if (res.ok) {
         toast.success("Message sent successfully!");
+        
+        // Track successful contact form submission
+        trackFormSubmission('contact_form', '/contact-us');
+        trackEvent('contact_submitted', 'conversions', formData.subject, 1);
+        
         setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
         toast.error(data.message || "Failed to send message.");
@@ -130,7 +136,7 @@ const Contact = () => {
       <div className="absolute top-0 left-0 w-72 h-72 bg-orange-400/20 rounded-full -translate-x-1/2 -translate-y-1/2 filter blur-xl"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-pink-400/20 rounded-full translate-x-1/3 translate-y-1/3 filter blur-xl"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto mt-20">
+      <div className="relative z-10 max-w-7xl mx-auto mt-24 pt-4">
         {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}

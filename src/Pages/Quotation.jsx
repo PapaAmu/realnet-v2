@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { trackFormSubmission, trackEvent, trackConversion } from "../components/AnalyticsTracker";
 import {
   FaPhone,
   FaEnvelope,
@@ -171,6 +172,22 @@ const Quotation = ({ onClose }) => {
 
       if (res.ok) {
         toast.success("Quotation request submitted successfully!");
+        
+        // Track successful form submission for analytics
+        trackFormSubmission('quotation_request', '/new-project/request-quotation');
+        trackConversion('lead_generated', formData.budget ? formData.budget.replace(/[^0-9]/g, '') : null);
+        trackEvent('quote_submitted', 'conversions', formData.service, 1);
+        
+        // Track service type for better insights
+        if (formData.service) {
+          trackEvent('service_interest', 'lead_quality', formData.service);
+        }
+        
+        // Track budget range for conversion value
+        if (formData.budget) {
+          trackEvent('budget_range', 'lead_quality', formData.budget);
+        }
+        
         setFormData({
           name: "",
           email: "",
