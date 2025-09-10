@@ -23,7 +23,7 @@ const Navbar = () => {
     else if (pathname.includes("about-us")) setActiveLink("about");
     else if (pathname.includes("projects")) setActiveLink("projects");
     else if (pathname.includes("popia")) setActiveLink("popia");
-    else if (pathname.includes("pricing") || pathname.includes("#pricing")) setActiveLink("pricing");
+    else if (pathname.includes("resources") || pathname.includes("#resources")) setActiveLink("resources");
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -292,14 +292,14 @@ const Navbar = () => {
               </motion.div>
 
               <motion.a 
-                href="#pricing" 
-                className={`relative py-2 transition ${activeLink === 'pricing' ? 'text-orange-400' : 'hover:text-orange-400'}`}
+                href="/resources" 
+                className={`relative py-2 transition ${activeLink === 'resources' ? 'text-orange-400' : 'hover:text-orange-400'}`}
                 whileHover={hoverEffect}
                 whileTap={tapEffect}
-                onClick={() => setActiveLink('pricing')}
+                onClick={() => setActiveLink('resources')}
               >
-                Pricing
-                {activeLink === 'pricing' && (
+                Resources
+                {activeLink === 'resources' && (
                   <motion.div 
                     className="absolute bottom-0 left-0 w-full h-0.5 bg-orange-400"
                     layoutId="activeIndicator"
@@ -436,7 +436,7 @@ const Navbar = () => {
                       { href: "/", text: "Home", id: "home" },
                       { href: "#", text: "Solutions", id: "solutions", action: showSolutions, hasDropdown: true },
                       { href: "#", text: "Company", id: "company", action: showCompany, hasDropdown: true },
-                      { href: "#pricing", text: "Pricing", id: "pricing" }
+                      { href: "#resources", text: "Resources", id: "resources" }
                     ].map((item, index) => (
                       <motion.div
                         key={index}
