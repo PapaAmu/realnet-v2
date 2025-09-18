@@ -1,114 +1,357 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ReactTyped } from "react-typed";
 import { motion } from "framer-motion";
+import {
+  FaReact,
+  FaNodeJs,
+  FaDocker,
+  FaHtml5,
+  FaCss3Alt,
+} from "react-icons/fa";
+import {
+  SiTailwindcss,
+  SiMysql,
+  SiLaravel,
+  SiMongodb,
+  SiTypescript,
+  SiPhp,
+} from "react-icons/si";
 
 const Hero = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [activeService, setActiveService] = useState(0);
+  const [windowSize, setWindowSize] = useState({
+    width: typeof window !== 'undefined' ? window.innerWidth : 1200,
+    height: typeof window !== 'undefined' ? window.innerHeight : 800,
+  });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("resize", handleResize);
+    
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const services = [
+    "Web Development",
+    "Mobile Apps",
+    "E-commerce",
+    "Email Solutions",
+  ];
+
+  // Tech icons to display
+  const techIcons = [
+    { name: "Laravel", icon: <SiLaravel className="text-red-500 text-xl md:text-2xl lg:text-3xl" />, color: "text-red-500" },
+    { name: "React", icon: <FaReact className="text-blue-400 text-xl md:text-2xl lg:text-3xl" />, color: "text-blue-400" },
+    { name: "PHP", icon: <SiPhp className="text-purple-400 text-xl md:text-2xl lg:text-3xl" />, color: "text-purple-400" },
+    { name: "Docker", icon: <FaDocker className="text-blue-300 text-xl md:text-2xl lg:text-3xl" />, color: "text-blue-300" },
+    { name: "TailwindCSS", icon: <SiTailwindcss className="text-teal-300 text-xl md:text-2xl lg:text-3xl" />, color: "text-teal-300" },
+    { name: "NodeJS", icon: <FaNodeJs className="text-green-500 text-xl md:text-2xl lg:text-3xl" />, color: "text-green-500" },
+    { name: "HTML5", icon: <FaHtml5 className="text-orange-500 text-xl md:text-2xl lg:text-3xl" />, color: "text-orange-500" },
+    { name: "CSS3", icon: <FaCss3Alt className="text-blue-500 text-xl md:text-2xl lg:text-3xl" />, color: "text-blue-500" },
+    { name: "MySQL", icon: <SiMysql className="text-blue-600 text-xl md:text-2xl lg:text-3xl" />, color: "text-blue-600" },
+    { name: "MongoDB", icon: <SiMongodb className="text-green-600 text-xl md:text-2xl lg:text-3xl" />, color: "text-green-600" },
+    { name: "TypeScript", icon: <SiTypescript className="text-blue-700 text-xl md:text-2xl lg:text-3xl" />, color: "text-blue-700" },
+  ];
+
+  // Generate random positions for floating icons
+  const generateRandomPositions = (count) => {
+    return Array.from({ length: count }, (_, i) => ({
+      id: i,
+      x: Math.random() * 90, // 0-90% of container width
+      y: Math.random() * 90, // 0-90% of container height
+      delay: Math.random() * 2, // Random delay for animation
+      duration: 3 + Math.random() * 2, // Random duration between 3-5 seconds
+    }));
+  };
+
+  const [iconPositions] = useState(generateRandomPositions(techIcons.length));
+
   return (
-    <div className="">
-      <div className="relative h-screen">
-        {/* Background */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 z-[-2] h-screen w-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]"></div>
-        </div>
-
-        {/* Content */}
-        <div className="relative z-10 flex h-full flex-col items-center justify-center px-4">
-          <div className="max-w-3xl text-center">
-            {/* First Line */}
-            <motion.h1
-              initial={{ opacity: 0, y: -40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="text-3xl font-light tracking-tight sm:text-6xl lg:text-5xl text-white"
-            >
-              Quality Development Of
-            </motion.h1>
-
-            {/* Middle Line with Typed Animation */}
-            <motion.span
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: false }}
-              transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
-              className="block bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-pink-400 font-extrabold tracking-tight text-7xl sm:text-6xl lg:text-9xl leading-tight"
-              style={{
-                minHeight: "1.2em",
-                display: "inline-block",
-              }}
-            >
-              <ReactTyped
-                strings={["Software", "Websites", "Solutions"]}
-                typeSpeed={150}
-                backSpeed={50}
-                loop
-                backDelay={1800}
-                showCursor={true}
-              />
-            </motion.span>
-
-            {/* Third Line */}
-            <motion.h2
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
-              transition={{ duration: 1, delay: 1.5, ease: "easeOut" }}
-              className="text-3xl font-light tracking-tight sm:text-6xl lg:text-5xl text-white"
-            >
-              That Build Your Business
-            </motion.h2>
-
-            {/* Subheading */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: false }}
-              transition={{ duration: 1, delay: 2, ease: "easeOut" }}
-              className="mx-auto mt-20 mb-4 max-w-3xl text-lg text-orange-400"
-            >
-              Professional web development, mobile app development, and software solutions for South African businesses.
-            </motion.p>
-            
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: false }}
-              transition={{ duration: 1, delay: 2.2, ease: "easeOut" }}
-              className="mx-auto mb-8 max-w-2xl text-base text-gray-300"
-            >
-              Serving Pretoria, Johannesburg, Cape Town, and nationwide. From responsive websites to custom mobile apps - we turn your digital vision into reality.
-            </motion.p>
-
-            {/* Buttons */}
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 mt-14">
+      {/* Enhanced Code Editor Background with Green Text */}
+      <div className="absolute inset-0 opacity-40">
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+          {[...Array(25)].map((_, i) => (
             <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false }}
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { delay: 2.5, staggerChildren: 0.3 },
-                },
+              key={i}
+              className="text-green-400 font-mono text-xs md:text-sm whitespace-nowrap"
+              style={{
+                position: "absolute",
+                left: `${i % 2 === 0 ? 5 : 55}%`,
+                top: `${i * 4}%`,
               }}
-              className="flex flex-wrap justify-center gap-4"
+              animate={{
+                y: [0, windowSize.height],
+                opacity: [0, 0.7, 0.7, 0],
+              }}
+              transition={{
+                duration: 20 + (i % 10),
+                repeat: Infinity,
+                delay: i * 1.5,
+                ease: "linear",
+              }}
             >
-              <motion.a
-                href="/#joinsection"
-                className="rounded-lg px-6 py-3 font-medium bg-gradient-to-r from-orange-500 to-pink-500 text-white hover:bg-orange-300 transition"
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-              >
-                Get Started
-              </motion.a>
-              
+              {i % 5 === 0 && "<div className='container mx-auto px-4'>"}
+              {i % 5 === 1 && "function calculateTotal() {"}
+              {i % 5 === 2 && "  const userData = await fetchAPI();"}
+              {i % 5 === 3 && "  return processData(userData);"}
+              {i % 5 === 4 && "}"}
             </motion.div>
-          </div>
+          ))}
         </div>
       </div>
+
+      {/* Scattered floating tech icons */}
+      <div className="absolute inset-0 overflow-hidden">
+        {techIcons.map((tech, index) => {
+          const position = iconPositions[index];
+          return (
+            <motion.div
+              key={index}
+              className={`absolute ${tech.color} bg-gray-800/30 backdrop-blur-sm rounded-xl p-2 flex items-center justify-center`}
+              style={{
+                left: `${position.x}%`,
+                top: `${position.y}%`,
+                width: '3rem',
+                height: '3rem',
+              }}
+              animate={{
+                y: [0, -20, 0],
+              }}
+              transition={{
+                duration: position.duration,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: position.delay
+              }}
+              whileHover={{ 
+                scale: 1.2,
+                backgroundColor: 'rgba(30, 30, 30, 0.7)',
+                transition: { duration: 0.2 }
+              }}
+              title={tech.name}
+            >
+              {tech.icon}
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Animated background elements */}
+      <div 
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,165,0,0.2) 0px, transparent 80px)`
+        }}
+      />
+      
+      {/* Grid pattern */}
+      <div className="absolute inset-0 opacity-10 bg-grid-pattern bg-20px-20px" />
+      
+      {/* Content */}
+      <div className="relative z-10 container mx-auto px-4 py-16 min-h-screen flex flex-col lg:flex-row items-center justify-between">
+        {/* Left side - Text content */}
+        <div className="w-full lg:w-1/2 mb-12 lg:mb-0">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            className="mb-6"
+          >
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4">
+              We Create
+            </h1>
+            
+            <div className="h-20 md:h-24 lg:h-28">
+              <ReactTyped
+                strings={[
+                  "Digital Experiences",
+                  "Business Solutions",
+                  "Web Applications",
+                  "Mobile Platforms",
+                  "Innovative Systems"
+                ]}
+                typeSpeed={70}
+                backSpeed={50}
+                loop
+                backDelay={1500}
+                showCursor={true}
+                cursorChar="|"
+                className="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-pink-500"
+              />
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white">
+              That Drive Growth
+            </h2>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="text-lg text-gray-300 mb-8 max-w-xl"
+          >
+            Professional digital solutions for South African businesses. From responsive websites to custom applications, we transform your vision into reality.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="flex flex-wrap gap-4 mb-12"
+          >
+            <motion.a
+              href="/new-project/request-quotation"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-6 py-3 md:px-8 md:py-3 rounded-xl bg-gradient-to-r from-orange-500 to-pink-500 text-white font-medium shadow-lg hover:shadow-orange-500/30 transition-all duration-300 text-sm md:text-base"
+            >
+              Start Your Project
+            </motion.a>
+            
+            <motion.a
+              href="/features/web-development/live-projects"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-6 py-3 md:px-8 md:py-3 rounded-xl border border-orange-500 text-orange-400 font-medium hover:bg-orange-500/10 transition-all duration-300 text-sm md:text-base"
+            >
+              View Our Work
+            </motion.a>
+          </motion.div>
+
+          {/* Services indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.8 }}
+            className="flex items-center space-x-4"
+          >
+            
+            <div className="relative w-full">
+              <motion.div
+                animate={{
+                  background: `linear-gradient(90deg, ${services.map((_, i) => 
+                    i === activeService ? '#070442' : 'rgba(0, 121, 181, 0.8)'
+                  ).join(', ')})`
+                }}
+                className="flex rounded-md p-1 bg-gray-800 overflow-x-auto"
+              >
+                {services.map((service, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveService(index)}
+                    className={`px-3 py-2 md:px-4 md:py-2 rounded-md text-xs md:text-sm font-medium transition-all duration-300 whitespace-nowrap ${
+                      index === activeService 
+                        ? 'text-white' 
+                        : 'text-gray-400 hover:text-orange-300'
+                    }`}
+                  >
+                    {service}
+                  </button>
+                ))}
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Right side - Visual element */}
+        <div className="w-full lg:w-2/5 mt-8 lg:mt-0">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="relative"
+          >
+            {/* Main card */}
+            <div className="bg-gray-800/50 backdrop-blur-md rounded-2xl p-4 md:p-6 border border-gray-700 shadow-xl">
+              <div className="flex items-center mb-4 md:mb-6">
+                <div className="flex space-x-2">
+                  <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-red-500"></div>
+                  <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-yellow-500"></div>
+                  <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-green-500"></div>
+                </div>
+                <div className="flex-1 text-center">
+                  <span className="text-gray-400 text-xs md:text-sm">dashboard.jsx</span>
+                </div>
+              </div>
+              
+              <div className="space-y-3 md:space-y-4">
+                <div className="flex space-x-3 md:space-x-4">
+                  <div className="flex-1 bg-gray-900 rounded-lg p-3 md:p-4">
+                    <div className="h-3 md:h-4 bg-gray-700 rounded w-3/4 mb-2 md:mb-3"></div>
+                    <div className="h-2 md:h-3 bg-gray-700 rounded w-1/2"></div>
+                  </div>
+                  <div className="w-1/3 bg-gradient-to-br from-orange-500 to-pink-500 rounded-lg p-3 md:p-4 flex items-center justify-center">
+                    <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                </div>
+                
+                <div className="bg-gray-900 rounded-lg p-3 md:p-4">
+                  <div className="grid grid-cols-3 gap-3 md:gap-4 mb-3 md:mb-4">
+                    <div className="h-2 md:h-3 bg-gray-700 rounded"></div>
+                    <div className="h-2 md:h-3 bg-gray-700 rounded"></div>
+                    <div className="h-2 md:h-3 bg-gray-700 rounded"></div>
+                  </div>
+                  <div className="h-16 md:h-20 bg-gradient-to-r from-gray-800 to-gray-700 rounded-lg flex items-center justify-center">
+                    <svg className="w-6 h-6 md:w-10 md:h-10 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                  </div>
+                </div>
+                
+                {/* Tech icons row */}
+                <div className="flex justify-between flex-wrap gap-2">
+                  {techIcons.slice(0, 5).map((tech, index) => (
+                    <motion.div
+                      key={index}
+                      whileHover={{ scale: 1.2, rotate: 5 }}
+                      className={`${tech.color} bg-gray-800 p-1 md:p-2 rounded-lg flex items-center justify-center`}
+                      title={tech.name}
+                    >
+                      {tech.icon}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+      
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.5 }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
+      >
+        <span className="text-sm text-gray-400 mt-4">Scroll to explore</span>
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center"
+        >
+          <div className="w-1 h-3 bg-orange-400 rounded-full mt-2" />
+        </motion.div>
+      </motion.div>
     </div>
   );
 };
