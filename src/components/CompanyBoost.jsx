@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const CompanyBoost = () => {
-  const [companyID, setCompanyID] = React.useState("");
   const navigate = useNavigate();
 
   const containerVariants = {
@@ -21,13 +20,25 @@ const CompanyBoost = () => {
   };
 
   return (
-    <div id="joinsection">
-      <div className="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32">
+    <div id="joinsection" className="relative">
+      {/* Floating Image - aligned left on large screens, centered on mobile */}
+      <div className="absolute -top-24 left-1/2 sm:left-12 md:left-16 lg:left-20 xl:left-24 -translate-x-1/2 sm:translate-x-0 w-64 sm:w-72 md:w-80 lg:w-96 xl:w-[26rem] z-20 flex justify-center sm:justify-start">
+        <motion.img
+          src="/desktop.webp"
+          alt="Floating Display"
+          className="w-full h-auto rounded-xl"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        />
+      </div>
+
+      {/* Main Section */}
+      <div className="relative isolate overflow-hidden bg-gray-900 pt-40 pb-8 sm:pt-48 sm:pb-20 lg:pt-20 lg:pb-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
-            
-            {/* Text Section */}
-            <div className="max-w-xl lg:max-w-lg">
+          <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-16 lg:max-w-none lg:grid-cols-2">
+            {/* Text Section at bottom */}
+            <div className="max-w-xl lg:max-w-lg flex flex-col md:mt-48 justify-center">
               <motion.h2
                 className="text-4xl font-semibold tracking-tight text-white"
                 initial="hidden"
@@ -36,52 +47,38 @@ const CompanyBoost = () => {
                 variants={containerVariants}
                 custom={0}
               >
-                Empower Your <span className="text-orange-400">Business</span>
+                Empower Your <span className="text-orange-400">Business with Us</span>
               </motion.h2>
-              
-              <motion.p
-                className="mt-4 text-lg text-gray-300"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.3 }}
-                variants={containerVariants}
-                custom={1}
-              >
-                RealNet Web Solutions helps startups and enterprises build modern websites, secure hosting, and powerful web applications to drive business growth and digital transformation.
-              </motion.p>
 
-              <motion.div
-                className="mt-6 flex max-w-md gap-x-4"
+              <motion.p
+                className="mt-4 text-gray-400 text-base leading-relaxed"
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: false, amount: 0.3 }}
-                variants={containerVariants}
-                custom={2}
+                variants={featureVariants}
               >
-                <label htmlFor="companyID" className="sr-only">
-                  Company ID
-                </label>
-                <input
-                  id="companyID"
-                  value={companyID}
-                  onChange={(e) => setCompanyID(e.target.value)}
-                  type="text"
-                  className="min-w-0 flex-auto rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
-                  placeholder="Enter Your Company ID"
-                />
-                <button
-                  onClick={() => navigate(`/room/${companyID}`)}
-                  disabled={companyID.length === 0}
-                  className="flex-none rounded-md bg-orange-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-orange-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                Take your company to new heights with professional, secure, and
+                scalable web solutions that drive results.
+              </motion.p>
+              <motion.a
+                href="/about-us"
+                className="px-4 py-2 mt-4 bg-gradient-to-r w-44 from-orange-500 to-pink-500 rounded-md text-white font-semibold flex items-center"
+                whileHover={{
+                  background: "linear-gradient(to right, #ec4899, #f97316)",
+                  transition: { duration: 0.3 }
+                }}
+              >
+                More About Us
+                <motion.span
+                  animate={{ x: [0, 4, 0] }}
+                  transition={{ repeat: Infinity, duration: 1.5 }}
                 >
-                  Get Started
-                </button>
-              </motion.div>
+                  &nbsp;→
+                </motion.span>
+              </motion.a>
             </div>
 
             {/* Feature Blocks */}
-            <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
-              
+            <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-2 lg:pt-2">
               {/* Professional Web Solutions */}
               <motion.div
                 className="flex flex-col items-start"
@@ -108,7 +105,8 @@ const CompanyBoost = () => {
                   Professional Web Solutions
                 </dt>
                 <dd className="mt-2 text-base/7 text-gray-400">
-                  Custom websites and apps tailored for your business needs, optimized for performance and growth.
+                  Custom websites and apps tailored for your business needs,
+                  optimized for performance and growth.
                 </dd>
               </motion.div>
 
@@ -139,7 +137,71 @@ const CompanyBoost = () => {
                   Secure & Reliable
                 </dt>
                 <dd className="mt-2 text-base/7 text-gray-400">
-                  Your business data is protected. We ensure security, privacy, and no spam in all communications.
+                  Your business data is protected. We ensure security, privacy,
+                  and no spam in all communications.
+                </dd>
+              </motion.div>
+
+              {/* Managed Hosting */}
+              <motion.div
+                className="flex flex-col items-start"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.3 }}
+                variants={featureVariants}
+              >
+                <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M3 15h18M3 9h18M4 21h16a1 1 0 0 0 1-1v-4H3v4a1 1 0 0 0 1 1zM4 3h16a1 1 0 0 1 1 1v4H3V4a1 1 0 0 1 1-1z" />
+                  </svg>
+                </div>
+                <dt className="mt-4 text-base font-semibold text-white">
+                  Managed Hosting
+                </dt>
+                <dd className="mt-2 text-base/7 text-gray-400">
+                  Focus on your business while we handle hosting, maintenance,
+                  backups, and server monitoring—your platforms, fully managed.
+                </dd>
+              </motion.div>
+
+              {/* Business Emails */}
+              <motion.div
+                className="flex flex-col items-start"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.3 }}
+                variants={featureVariants}
+              >
+                <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M4 4h16v16H4z" />
+                    <path d="M22 6l-10 7L2 6" />
+                  </svg>
+                </div>
+                <dt className="mt-4 text-base font-semibold text-white">
+                  Business Emails
+                </dt>
+                <dd className="mt-2 text-base/7 text-gray-400">
+                  Present a professional image with your own domain-based email
+                  accounts—no more generic Gmail. Boost trust and brand identity.
                 </dd>
               </motion.div>
             </dl>
@@ -152,7 +214,7 @@ const CompanyBoost = () => {
           aria-hidden="true"
         >
           <div
-            className="aspect-1155/678 w-[72.1875rem] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
+            className="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
             style={{
               clipPath:
                 "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",

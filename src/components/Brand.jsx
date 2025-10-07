@@ -8,6 +8,10 @@ import hrholdingsImg from "../assets/images/brands/hrholdings.png";
 import nnwImg from "../assets/images/brands/nnw.png";
 import ritsImg from "../assets/images/brands/rits.webp";
 import nosweleImg from "../assets/images/brands/noswele.png";
+import northwestSundayImg from "../assets/images/brands/northwestsunday.png";
+import inabellaImg from "../assets/images/brands/inabella.jpg";
+import ukrebeImg from "../assets/images/brands/ukrebe.png";
+import inawuImg from "../assets/images/brands/inawu.png";
 
 const brands = [
   { id: 4, img: etshadiImg, alt: "Etshadi" },
@@ -18,11 +22,15 @@ const brands = [
   { id: 6, img: nnwImg, alt: "NNW" },
   { id: 2, img: eaglenestImg, alt: "Eagle Nest" },
   { id: 8, img: nosweleImg, alt: "Noswele" },
+  { id: 9, img: northwestSundayImg, alt: "Northwest Sunday" },
+  { id: 10, img: inabellaImg, alt: "Inabella" },
+  { id: 11, img: ukrebeImg, alt: "Ukrebe" },
+  { id: 12, img: inawuImg, alt: "Inawu" },
 ];
 
 const Brand = () => {
   return (
-    <div className="py-14 bg-white">
+    <div className="py-20 mb-12 bg-white">
       <div className="max-w-screen-xl mx-auto px-4 md:px-8">
         {/* Title & Description */}
         <motion.div
