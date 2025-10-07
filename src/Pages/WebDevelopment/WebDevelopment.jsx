@@ -76,17 +76,18 @@ const WebsiteDevelopment = () => {
   // Pricing packages
   const pricingPackages = [
     {
-      name: "Starter Website",
+      name: "Starter Business Website",
       price: "R3,499 - R5,999",
       description: "Perfect for small businesses and personal brands",
       popular: false,
       features: [
-        "Up to 5 pages",
+        "Up to 8 pages",
         "Responsive design",
-        "Basic SEO setup",
-        "Contact form",
-        "1 month free support",
+        "Basic Google SEO setup",
+        "Managed Hosting for 1 year",
+        "Support & Maintenance",
         "Social media integration",
+        "Email Accounts",
       ],
       icon: <FaRocket className="text-2xl" />,
     },
@@ -96,19 +97,22 @@ const WebsiteDevelopment = () => {
       description: "Complete online store with payment processing",
       popular: true,
       features: [
-        "Unlimited products",
+        "Upto 200 products",
         "Secure payment gateway",
         "Inventory management",
         "Customer accounts",
         "Order tracking",
-        "3 months free support",
+        "Support & Maintenance",
         "SEO optimized",
+        "Social media integration",
+        "Dashboard/Login Panel",
+
       ],
       icon: <FaShoppingCart className="text-2xl" />,
     },
     {
       name: "Advanced Custom",
-      price: "R20,000+",
+      price: "R10,000+",
       description: "Fully custom website with advanced functionality",
       popular: false,
       features: [
@@ -116,9 +120,10 @@ const WebsiteDevelopment = () => {
         "Advanced functionality",
         "Premium SEO package",
         "Content management system",
-        "6 months free support",
+        "Support & Maintenance",
         "Performance optimization",
         "Priority development",
+        "SSL Certificate",
       ],
       icon: <FaCrown className="text-2xl" />,
     },
@@ -326,7 +331,7 @@ const WebsiteDevelopment = () => {
                     <p className="text-gray-300 mt-2">{pkg.description}</p>
                   </div>
 
-                  <ul className="space-y-3 mb-8">
+                  <ul className="space-y-3 mb-8 text-sm">
                     {pkg.features.map((feature, idx) => (
                       <li key={idx} className="flex items-center">
                         <FaCheck className="text-green-500 mr-3 flex-shrink-0" />
@@ -370,12 +375,12 @@ const WebsiteDevelopment = () => {
               drives growth for your business.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 py-4 bg-white text-orange-600 font-semibold rounded-lg shadow-lg hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1">
+              <a href="/contact-us" className="px-8 py-4 bg-white text-orange-600 font-semibold rounded-lg shadow-lg hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1">
                 Get Your Free Consultation
-              </button>
-              <button className="px-8 py-4 border border-white text-white font-semibold rounded-lg shadow-sm hover:bg-white/10 transition-all duration-300">
+              </a>
+              <a href="/features/web-development/live-projects" className="px-8 py-4 border border-white text-white font-semibold rounded-lg shadow-sm hover:bg-white/10 transition-all duration-300">
                 View Our Portfolio
-              </button>
+              </a>
             </div>
           </motion.div>
         </div>
