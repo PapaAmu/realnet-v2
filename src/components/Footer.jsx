@@ -274,10 +274,10 @@ const Footer = () => {
           <div className="flex items-center gap-4 flex-col sm:flex-row">
             <div className="flex items-center gap-3">
               <img src="/logo.png" className="h-8 invert" alt="RealNet Web Solutions" />
-              <span className="text-white font-semibold">RealNet Web</span>
+              
             </div>
             <p className="text-gray-400 text-sm">
-              © {new Date().getFullYear()} RealNet Web Solutions. All rights reserved.
+              © 2024 - {new Date().getFullYear()} RealNet Web Solutions PTY. All rights reserved.
             </p>
           </div>
 

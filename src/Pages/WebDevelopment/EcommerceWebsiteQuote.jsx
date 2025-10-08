@@ -14,6 +14,8 @@ import {
   FaTimes,
   FaCloudUploadAlt
 } from 'react-icons/fa';
+import SEO from '../../SEO';
+import RelatedContent from '../../Components/RelatedContent';
 
 const EcommerceWebsiteQuote = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -206,219 +208,342 @@ const EcommerceWebsiteQuote = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white">
-      {/* Toast Container */}
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        pauseOnHover
-        draggable
-        theme="colored"
-        toastClassName={() =>
-          "relative flex p-4 rounded-xl justify-between overflow-hidden cursor-pointer bg-gradient-to-r from-blue-400 to-purple-500 text-white shadow-lg"
-        }
-        bodyClassName={() => "text-sm font-medium flex items-center"}
-        progressClassName={() => "bg-white"}
+    <>
+      <SEO
+        title="E-commerce Website Quote | Online Store Development South Africa"
+        description="Get a custom quote for your e-commerce website development. Professional online store development with payment integration, inventory management, and responsive design for South African businesses."
+        keywords={[
+          "e-commerce website quote",
+          "online store development South Africa",
+          "e-commerce development Johannesburg",
+          "online shopping website",
+          "e-commerce store pricing",
+          "custom e-commerce solutions",
+          "payment integration South Africa",
+          "inventory management system"
+        ]}
+        ogImage="/ecommerce-quote-og.jpg"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "serviceType": "E-commerce Website Development",
+          "provider": {
+            "@type": "Organization",
+            "name": "REALNET WEB SOLUTIONS",
+            "url": "https://realnet-web.co.za"
+          },
+          "areaServed": "ZA",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "E-commerce Development Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "New E-commerce Store",
+                  "description": "Complete online store development from scratch"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "E-commerce Store Redesign",
+                  "description": "Improve and modernize existing online store"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "E-commerce Integration",
+                  "description": "Add shopping functionality to existing website"
+                }
+              }
+            ]
+          },
+          "description": "Professional e-commerce website development services with secure payment integration and inventory management",
+          "availableChannel": {
+            "@type": "ServiceChannel",
+            "serviceUrl": "https://realnet-web.co.za/features/web-development/ecommerce-website-quote"
+          }
+        }}
       />
 
-      {/* Header - Mobile Responsive */}
-      <header className="relative bg-gradient-to-r from-blue-500 via-purple-500 to-blue-600 py-6 md:py-8 overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:40px_40px] md:bg-[size:60px_60px]"></div>
-        
-        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white">
+        {/* Toast Container */}
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          pauseOnHover
+          draggable
+          theme="colored"
+          toastClassName={() =>
+            "relative flex p-4 rounded-xl justify-between overflow-hidden cursor-pointer bg-gradient-to-r from-blue-400 to-purple-500 text-white shadow-lg"
+          }
+          bodyClassName={() => "text-sm font-medium flex items-center"}
+          progressClassName={() => "bg-white"}
+        />
+
+        {/* Header - Mobile Responsive */}
+        <header 
+          className="relative bg-gradient-to-r from-blue-500 via-purple-500 to-blue-600 py-6 md:py-8 overflow-hidden"
+          data-section="hero"
+        >
+          <div className="absolute inset-0 bg-black opacity-20"></div>
+          <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:40px_40px] md:bg-[size:60px_60px]"></div>
+          
+          <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="flex justify-center mb-3 md:mb-4">
+                <div className="p-2 md:p-3 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/20">
+                  <FaShoppingCart className="text-2xl md:text-3xl text-blue-300" />
+                </div>
+              </div>
+              <h1 className="text-2xl md:text-4xl font-bold mb-2 md:mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200 px-2">
+                Ecommerce Store Development
+              </h1>
+              <p className="text-base md:text-lg text-blue-100 max-w-2xl mx-auto px-2">
+                Complete online store - R6,000 to R19,999
+              </p>
+            </motion.div>
+          </div>
+        </header>
+
+        <div className="max-w-4xl mx-auto px-3 sm:px-4 py-6 md:py-8">
+          {/* Progress Steps - Mobile Responsive */}
+          <motion.div 
+            className="flex justify-center mb-6 md:mb-8 px-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
           >
-            <div className="flex justify-center mb-3 md:mb-4">
-              <div className="p-2 md:p-3 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/20">
-                <FaShoppingCart className="text-2xl md:text-3xl text-blue-300" />
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl md:rounded-2xl p-3 md:p-4 border border-gray-700 w-full max-w-2xl">
+              <div className="flex items-center justify-between md:justify-center md:space-x-4 lg:space-x-6">
+                {steps.map((step, index) => {
+                  const IconComponent = step.icon;
+                  return (
+                    <React.Fragment key={step.id}>
+                      <div className="flex flex-col items-center flex-1 md:flex-none">
+                        <div className={`w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl flex items-center justify-center border-2 transition-all duration-300 ${
+                          currentStep > step.id
+                            ? 'bg-green-500 border-green-500 shadow-lg shadow-green-500/25'
+                            : currentStep === step.id
+                            ? 'bg-gradient-to-r from-blue-500 to-purple-500 border-transparent shadow-lg shadow-blue-500/25'
+                            : 'border-gray-600 bg-gray-700'
+                        }`}>
+                          <IconComponent className={
+                            `text-sm md:text-base ${currentStep >= step.id ? 'text-white' : 'text-gray-400'}`
+                          } />
+                        </div>
+                        <span className={`text-xs mt-1 md:mt-2 font-medium text-center hidden xs:block ${
+                          currentStep >= step.id ? 'text-white' : 'text-gray-400'
+                        }`}>
+                          {step.title}
+                        </span>
+                      </div>
+                      {index < steps.length - 1 && (
+                        <div className={`flex-1 h-1 mx-1 md:mx-2 lg:w-6 rounded-full transition-all duration-300 ${
+                          currentStep > step.id ? 'bg-green-500' : 'bg-gray-600'
+                        }`} />
+                      )}
+                    </React.Fragment>
+                  );
+                })}
               </div>
             </div>
-            <h1 className="text-2xl md:text-4xl font-bold mb-2 md:mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200 px-2">
-              Ecommerce Store Development
-            </h1>
-            <p className="text-base md:text-lg text-blue-100 max-w-2xl mx-auto px-2">
-              Complete online store - R6,000 to R19,999
-            </p>
           </motion.div>
-        </div>
-      </header>
 
-      <div className="max-w-4xl mx-auto px-3 sm:px-4 py-6 md:py-8">
-        {/* Progress Steps - Mobile Responsive */}
-        <motion.div 
-          className="flex justify-center mb-6 md:mb-8 px-2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-        >
-          <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl md:rounded-2xl p-3 md:p-4 border border-gray-700 w-full max-w-2xl">
-            <div className="flex items-center justify-between md:justify-center md:space-x-4 lg:space-x-6">
-              {steps.map((step, index) => {
-                const IconComponent = step.icon;
-                return (
-                  <React.Fragment key={step.id}>
-                    <div className="flex flex-col items-center flex-1 md:flex-none">
-                      <div className={`w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl flex items-center justify-center border-2 transition-all duration-300 ${
-                        currentStep > step.id
-                          ? 'bg-green-500 border-green-500 shadow-lg shadow-green-500/25'
-                          : currentStep === step.id
-                          ? 'bg-gradient-to-r from-blue-500 to-purple-500 border-transparent shadow-lg shadow-blue-500/25'
-                          : 'border-gray-600 bg-gray-700'
-                      }`}>
-                        <IconComponent className={
-                          `text-sm md:text-base ${currentStep >= step.id ? 'text-white' : 'text-gray-400'}`
-                        } />
-                      </div>
-                      <span className={`text-xs mt-1 md:mt-2 font-medium text-center hidden xs:block ${
-                        currentStep >= step.id ? 'text-white' : 'text-gray-400'
-                      }`}>
-                        {step.title}
-                      </span>
-                    </div>
-                    {index < steps.length - 1 && (
-                      <div className={`flex-1 h-1 mx-1 md:mx-2 lg:w-6 rounded-full transition-all duration-300 ${
-                        currentStep > step.id ? 'bg-green-500' : 'bg-gray-600'
-                      }`} />
+          {/* Form Container - Mobile Responsive */}
+          <motion.div 
+            className="bg-gray-800/40 backdrop-blur-sm rounded-xl md:rounded-2xl border border-gray-700/50 shadow-2xl overflow-hidden mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            data-section="quote-form"
+          >
+            <div className="p-1 md:p-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20">
+              <div className="bg-gray-800 rounded-xl p-4 md:p-6 lg:p-8">
+                <form onSubmit={handleSubmit}>
+                  <AnimatePresence mode="wait">
+                    {/* Step 1: Project Type */}
+                    {currentStep === 1 && (
+                      <ProjectTypeStep
+                        formData={formData}
+                        updateFormData={updateFormData}
+                      />
                     )}
-                  </React.Fragment>
-                );
-              })}
-            </div>
-          </div>
-        </motion.div>
 
-        {/* Form Container - Mobile Responsive */}
-        <motion.div 
-          className="bg-gray-800/40 backdrop-blur-sm rounded-xl md:rounded-2xl border border-gray-700/50 shadow-2xl overflow-hidden mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-        >
-          <div className="p-1 md:p-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20">
-            <div className="bg-gray-800 rounded-xl p-4 md:p-6 lg:p-8">
-              <form onSubmit={handleSubmit}>
-                <AnimatePresence mode="wait">
-                  {/* Step 1: Project Type */}
-                  {currentStep === 1 && (
-                    <ProjectTypeStep
-                      formData={formData}
-                      updateFormData={updateFormData}
-                    />
-                  )}
+                    {/* Step 2: Store Details */}
+                    {currentStep === 2 && (
+                      <StoreDetailsStep
+                        formData={formData}
+                        updateFormData={updateFormData}
+                        handleFileUpload={handleFileUpload}
+                        removeAttachment={removeAttachment}
+                      />
+                    )}
 
-                  {/* Step 2: Store Details */}
-                  {currentStep === 2 && (
-                    <StoreDetailsStep
-                      formData={formData}
-                      updateFormData={updateFormData}
-                      handleFileUpload={handleFileUpload}
-                      removeAttachment={removeAttachment}
-                    />
-                  )}
+                    {/* Step 3: Contact Information */}
+                    {currentStep === 3 && (
+                      <ContactInfoStep
+                        formData={formData}
+                        updateFormData={updateFormData}
+                      />
+                    )}
 
-                  {/* Step 3: Contact Information */}
-                  {currentStep === 3 && (
-                    <ContactInfoStep
-                      formData={formData}
-                      updateFormData={updateFormData}
-                    />
-                  )}
+                    {/* Step 4: Review & Submit */}
+                    {currentStep === 4 && (
+                      <ReviewStep
+                        formData={formData}
+                        removeAttachment={removeAttachment}
+                        isSubmitting={isSubmitting}
+                      />
+                    )}
+                  </AnimatePresence>
 
-                  {/* Step 4: Review & Submit */}
-                  {currentStep === 4 && (
-                    <ReviewStep
-                      formData={formData}
-                      removeAttachment={removeAttachment}
-                      isSubmitting={isSubmitting}
-                    />
-                  )}
-                </AnimatePresence>
-
-                {/* Navigation Buttons - Mobile Responsive */}
-                <div className="flex flex-col sm:flex-row justify-between items-center gap-3 md:gap-4 mt-6 md:mt-8 pt-4 md:pt-6 border-t border-gray-700/50">
-                  <button
-                    type="button"
-                    onClick={prevStep}
-                    disabled={currentStep === 1 || isSubmitting}
-                    className="w-full sm:w-auto px-4 md:px-6 py-2 md:py-3 border border-gray-600 text-gray-300 rounded-lg md:rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-700/50 hover:border-gray-500 transition-all duration-300 flex items-center justify-center space-x-2 backdrop-blur-sm text-sm md:text-base"
-                  >
-                    <FaArrowLeft className="text-sm" />
-                    <span>Back</span>
-                  </button>
-
-                  <div className="text-xs md:text-sm text-gray-400 text-center py-2 md:py-0">
-                    Step {currentStep} of {steps.length}
-                  </div>
-
-                  {currentStep < steps.length ? (
+                  {/* Navigation Buttons - Mobile Responsive */}
+                  <div className="flex flex-col sm:flex-row justify-between items-center gap-3 md:gap-4 mt-6 md:mt-8 pt-4 md:pt-6 border-t border-gray-700/50">
                     <button
                       type="button"
-                      onClick={nextStep}
-                      className="w-full sm:w-auto px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg md:rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-blue-500/25 text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed"
-                      disabled={isSubmitting}
+                      onClick={prevStep}
+                      disabled={currentStep === 1 || isSubmitting}
+                      className="w-full sm:w-auto px-4 md:px-6 py-2 md:py-3 border border-gray-600 text-gray-300 rounded-lg md:rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-700/50 hover:border-gray-500 transition-all duration-300 flex items-center justify-center space-x-2 backdrop-blur-sm text-sm md:text-base"
+                      aria-label="Go to previous step"
                     >
-                      <span>Continue</span>
-                      <FaArrowRight className="text-sm" />
+                      <FaArrowLeft className="text-sm" />
+                      <span>Back</span>
                     </button>
-                  ) : (
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full sm:w-auto px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-lg md:rounded-xl hover:from-green-600 hover:to-emerald-600 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-green-500/25 text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                          <span>Submitting...</span>
-                        </>
-                      ) : (
-                        <>
-                          <FaCheck className="text-sm" />
-                          <span>Submit Request</span>
-                        </>
-                      )}
-                    </button>
-                  )}
-                </div>
-              </form>
-            </div>
-          </div>
-        </motion.div>
 
-        {/* Package Info - Mobile Responsive */}
-        <motion.div 
-          className="text-center mt-6 md:mt-8 px-2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-        >
-          <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-xl md:rounded-2xl p-4 md:p-6 backdrop-blur-sm">
-            <h3 className="text-base md:text-lg font-semibold text-blue-300 mb-2 md:mb-3">Ecommerce Store Includes:</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 text-xs md:text-sm text-gray-300">
-              <div className="flex items-center justify-center space-x-1 md:space-x-2">
-                <FaBox className="text-blue-400 text-sm md:text-base" />
-                <span>Product Management</span>
-              </div>
-              <div className="flex items-center justify-center space-x-1 md:space-x-2">
-                <FaShoppingCart className="text-green-400 text-sm md:text-base" />
-                <span>Secure Payments</span>
-              </div>
-              <div className="flex items-center justify-center space-x-1 md:space-x-2">
-                <FaStore className="text-purple-400 text-sm md:text-base" />
-                <span>Inventory System</span>
+                    <div className="text-xs md:text-sm text-gray-400 text-center py-2 md:py-0">
+                      Step {currentStep} of {steps.length}
+                    </div>
+
+                    {currentStep < steps.length ? (
+                      <button
+                        type="button"
+                        onClick={nextStep}
+                        className="w-full sm:w-auto px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg md:rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-blue-500/25 text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed"
+                        disabled={isSubmitting}
+                        aria-label="Continue to next step"
+                      >
+                        <span>Continue</span>
+                        <FaArrowRight className="text-sm" />
+                      </button>
+                    ) : (
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full sm:w-auto px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-lg md:rounded-xl hover:from-green-600 hover:to-emerald-600 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-green-500/25 text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed"
+                        aria-label="Submit e-commerce quote request"
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                            <span>Submitting...</span>
+                          </>
+                        ) : (
+                          <>
+                            <FaCheck className="text-sm" />
+                            <span>Submit Request</span>
+                          </>
+                        )}
+                      </button>
+                    )}
+                  </div>
+                </form>
               </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+
+          {/* Package Info - Mobile Responsive */}
+          <motion.div 
+            className="text-center mt-6 md:mt-8 px-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8 }}
+            data-section="package-features"
+          >
+            <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-xl md:rounded-2xl p-4 md:p-6 backdrop-blur-sm">
+              <h3 className="text-base md:text-lg font-semibold text-blue-300 mb-2 md:mb-3">Ecommerce Store Includes:</h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 text-xs md:text-sm text-gray-300">
+                <div className="flex items-center justify-center space-x-1 md:space-x-2">
+                  <FaBox className="text-blue-400 text-sm md:text-base" />
+                  <span>Product Management</span>
+                </div>
+                <div className="flex items-center justify-center space-x-1 md:space-x-2">
+                  <FaShoppingCart className="text-green-400 text-sm md:text-base" />
+                  <span>Secure Payments</span>
+                </div>
+                <div className="flex items-center justify-center space-x-1 md:space-x-2">
+                  <FaStore className="text-purple-400 text-sm md:text-base" />
+                  <span>Inventory System</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Additional SEO Content */}
+          <motion.div 
+            className="mt-8 md:mt-12 bg-gray-800/30 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 border border-gray-700/50"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1 }}
+          >
+            <h2 className="text-xl md:text-2xl font-bold text-white mb-4 text-center">
+              Professional E-commerce Development in South Africa
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 text-sm md:text-base text-gray-300">
+              <div>
+                <h3 className="text-lg font-semibold text-blue-400 mb-2">Why Choose Our E-commerce Solutions?</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-start">
+                    <FaCheck className="text-green-400 mt-1 mr-2 flex-shrink-0" />
+                    <span>Mobile-responsive design for all devices</span>
+                  </li>
+                  <li className="flex items-start">
+                    <FaCheck className="text-green-400 mt-1 mr-2 flex-shrink-0" />
+                    <span>Secure payment gateway integration</span>
+                  </li>
+                  <li className="flex items-start">
+                    <FaCheck className="text-green-400 mt-1 mr-2 flex-shrink-0" />
+                    <span>SEO-optimized for better visibility</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-purple-400 mb-2">Our Process</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-start">
+                    <FaCheck className="text-green-400 mt-1 mr-2 flex-shrink-0" />
+                    <span>Free consultation and requirements analysis</span>
+                  </li>
+                  <li className="flex items-start">
+                    <FaCheck className="text-green-400 mt-1 mr-2 flex-shrink-0" />
+                    <span>Custom design and development</span>
+                  </li>
+                  <li className="flex items-start">
+                    <FaCheck className="text-green-400 mt-1 mr-2 flex-shrink-0" />
+                    <span>Training and ongoing support</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Related Content Section */}
+        <RelatedContent currentPage="ecommerce-website-quote" />
       </div>
-    </div>
+    </>
   );
 };
 
@@ -467,10 +592,12 @@ const ProjectTypeStep = ({ formData, updateFormData }) => {
                   ? 'border-blue-500 bg-blue-500/10 shadow-lg shadow-blue-500/20'
                   : 'border-gray-600 hover:border-blue-400 hover:bg-blue-500/5'
               }`}
+              htmlFor={`project-type-${option.value}`}
             >
               <input
                 type="radio"
                 name="projectType"
+                id={`project-type-${option.value}`}
                 value={option.value}
                 checked={formData.projectType === option.value}
                 onChange={(e) => updateFormData('projectType', e.target.value)}
@@ -521,7 +648,11 @@ const StoreDetailsStep = ({ formData, updateFormData, handleFileUpload, removeAt
             onChange={(e) => updateFormData('businessName', e.target.value)}
             className="w-full bg-gray-700/50 border border-gray-600 rounded-lg md:rounded-xl px-3 md:px-4 py-2 md:py-3 text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none backdrop-blur-sm text-sm md:text-base"
             placeholder="What's your store called?"
+            aria-describedby="business-name-help"
           />
+          <div id="business-name-help" className="text-xs text-gray-400 mt-1">
+            Optional - helps us personalize your quote
+          </div>
         </div>
 
         <div>
@@ -540,10 +671,12 @@ const StoreDetailsStep = ({ formData, updateFormData, handleFileUpload, removeAt
                     ? 'border-blue-500 bg-blue-500/10 shadow-lg shadow-blue-500/20'
                     : 'border-gray-600 hover:border-blue-400 hover:bg-blue-500/5'
                 }`}
+                htmlFor={`products-${option.value}`}
               >
                 <input
                   type="radio"
                   name="productsCount"
+                  id={`products-${option.value}`}
                   value={option.value}
                   checked={formData.productsCount === option.value}
                   onChange={(e) => updateFormData('productsCount', e.target.value)}
@@ -564,7 +697,11 @@ const StoreDetailsStep = ({ formData, updateFormData, handleFileUpload, removeAt
             rows={3}
             className="w-full bg-gray-700/50 border border-gray-600 rounded-lg md:rounded-xl px-3 md:px-4 py-2 md:py-3 text-white placeholder-gray-400 focus:border-blue-500 focus:outline-none resize-none backdrop-blur-sm text-sm md:text-base"
             placeholder="Tell us about your products, target audience, and any special requirements..."
+            aria-describedby="description-help"
           />
+          <div id="description-help" className="text-xs text-gray-400 mt-1">
+            The more details you provide, the more accurate our quote will be
+          </div>
         </div>
 
         {/* File Upload Section */}
@@ -578,6 +715,7 @@ const StoreDetailsStep = ({ formData, updateFormData, handleFileUpload, removeAt
               className="hidden"
               id="file-upload"
               accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.zip,.psd,.ai,.fig,.xd,.csv"
+              aria-describedby="file-upload-help"
             />
             <label htmlFor="file-upload" className="cursor-pointer block">
               <FaCloudUploadAlt className="text-xl md:text-2xl text-blue-400 mx-auto mb-1 md:mb-2" />
@@ -588,6 +726,9 @@ const StoreDetailsStep = ({ formData, updateFormData, handleFileUpload, removeAt
                 Product images, catalogs, design files (Max: 10MB per file)
               </div>
             </label>
+          </div>
+          <div id="file-upload-help" className="text-xs text-gray-400 mt-1">
+            Supported formats: PDF, DOC, Images, ZIP, Design files
           </div>
 
           {/* Attached Files List */}
@@ -613,6 +754,7 @@ const StoreDetailsStep = ({ formData, updateFormData, handleFileUpload, removeAt
                       type="button"
                       onClick={() => removeAttachment(attachment.id)}
                       className="text-red-400 hover:text-red-300 transition-colors flex-shrink-0 ml-2"
+                      aria-label={`Remove ${attachment.name}`}
                     >
                       <FaTimes className="text-sm md:text-base" />
                     </button>
@@ -764,6 +906,7 @@ const ReviewStep = ({ formData, removeAttachment, isSubmitting }) => {
                     onClick={() => removeAttachment(attachment.id)}
                     className="text-red-400 hover:text-red-300 transition-colors flex-shrink-0 ml-2"
                     disabled={isSubmitting}
+                    aria-label={`Remove ${attachment.name}`}
                   >
                     <FaTimes className="text-sm md:text-base" />
                   </button>

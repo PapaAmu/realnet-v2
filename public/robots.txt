@@ -1,16 +1,25 @@
+# public/robots.txt
 User-agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /private/
 
+# Sitemaps
 Sitemap: https://realnet-web.co.za/sitemap.xml
 
-# Crawl delay for respectful crawling
+# Directories
+Disallow: /private/
+Disallow: /admin/
+Disallow: /api/
+
+# Files
+Disallow: /*.json$
+Disallow: /*.js$
+Allow: /static/js/
+Allow: /static/css/
+
+# Parameters
+Disallow: /*?*
+Allow: /*?page=
+Allow: /*?category=
+
+# Crawl delay
 Crawl-delay: 1
-
-# Additional SEO directives
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /

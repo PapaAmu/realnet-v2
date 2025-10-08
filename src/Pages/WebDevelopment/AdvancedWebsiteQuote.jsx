@@ -1,12 +1,12 @@
 // pages/custom-website-quote.jsx
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  FaArrowLeft, 
-  FaArrowRight, 
-  FaCheck, 
-  FaDesktop, 
-  FaCogs, 
+import {
+  FaArrowLeft,
+  FaArrowRight,
+  FaCheck,
+  FaDesktop,
+  FaCogs,
   FaDatabase,
   FaShoppingCart,
   FaUsers,
@@ -19,6 +19,8 @@ import {
   FaTimes,
   FaCloudUploadAlt
 } from 'react-icons/fa';
+import SEO from '../../SEO';
+import RelatedContent from '../../Components/RelatedContent';
 
 const CustomWebsiteQuote = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -100,6 +102,7 @@ const CustomWebsiteQuote = () => {
 
   const nextStep = () => {
     setCurrentStep(prev => Math.min(prev + 1, steps.length));
+    trackCTAClick(`Step ${currentStep + 1}`, 'custom-website-quote-form');
   };
 
   const prevStep = () => {
@@ -109,11 +112,15 @@ const CustomWebsiteQuote = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Custom website quote submitted:', formData);
-    
+
+    // Track form submission
+    trackFormSubmission('custom_website_quote', 'custom-website-quote');
+    trackCTAClick('Get Quote Submit', 'custom-website-quote-form');
+
     // Create FormData for file upload
     const submitData = new FormData();
     submitData.append('formData', JSON.stringify(formData));
-    
+
     formData.attachments.forEach(attachment => {
       submitData.append('attachments', attachment.file);
     });
@@ -127,198 +134,325 @@ const CustomWebsiteQuote = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-orange-900 to-gray-900 text-white">
-      {/* Header - Mobile Responsive */}
-      <header className="relative bg-gradient-to-r from-orange-500 via-pink-500 to-orange-600 py-8 md:py-12 overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:40px_40px] md:bg-[size:60px_60px]"></div>
-        
-        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+    <>
+      <SEO
+        title="Custom Website Development Quote | Professional Web Solutions South Africa"
+        description="Get a personalized quote for custom website development. Professional web applications, e-commerce stores, and business websites tailored to your needs in South Africa."
+        keywords={[
+          "custom website development quote",
+          "web application development South Africa",
+          "professional website quote",
+          "custom web design pricing",
+          "business website development",
+          "e-commerce website quote",
+          "web development services South Africa",
+          "responsive website design",
+          "custom CMS development"
+        ]}
+        ogImage="/custom-website-quote-og.jpg"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "serviceType": "Custom Website Development",
+          "provider": {
+            "@type": "Organization",
+            "name": "REALNET WEB SOLUTIONS",
+            "url": "https://realnet-web.co.za",
+            "logo": "https://realnet-web.co.za/logo.png",
+            "telephone": "+27-64-038-8883",
+            "email": "lukhele@realnet-web.co.za",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Matsau Street, Ivory Park",
+              "addressLocality": "Midrand",
+              "addressRegion": "Gauteng",
+              "postalCode": "1689",
+              "addressCountry": "ZA"
+            }
+          },
+          "areaServed": "ZA",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Custom Website Development Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Business Website Development",
+                  "description": "Custom business website development with responsive design"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "E-commerce Website Development",
+                  "description": "Online store development with payment integration"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Web Application Development",
+                  "description": "Custom web applications with user management"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Custom CMS Development",
+                  "description": "Tailored content management systems"
+                }
+              }
+            ]
+          },
+          "termsOfService": "https://realnet-web.co.za/terms",
+          "providerMobility": "static"
+        }}
+      />
+
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-orange-900 to-gray-900 text-white" itemScope itemType="https://schema.org/WebPage">
+        {/* Header - Mobile Responsive */}
+        <header className="relative bg-gradient-to-r from-orange-500 via-pink-500 to-orange-600 py-8 md:py-12 overflow-hidden" data-section="hero">
+          <div className="absolute inset-0 bg-black opacity-20"></div>
+          <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:40px_40px] md:bg-[size:60px_60px]"></div>
+
+          <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="flex justify-center mb-3 md:mb-4">
+                <div className="p-2 md:p-3 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/20">
+                  <FaDesktop className="text-2xl md:text-3xl text-orange-300" />
+                </div>
+              </div>
+              <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-orange-200 px-2" itemProp="headline">
+                Custom Website Development
+              </h1>
+              <p className="text-base md:text-xl text-orange-100 max-w-2xl mx-auto px-2" itemProp="description">
+                Tailored web solutions for your business. Starting from R5,000+
+              </p>
+
+              {/* Local Business Microdata */}
+              <div itemScope itemType="https://schema.org/LocalBusiness" className="hidden">
+                <span itemProp="name">REALNET WEB SOLUTIONS</span>
+                <div itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+                  <span itemProp="streetAddress">Matsau Street, Ivory Park</span>
+                  <span itemProp="addressLocality">Midrand</span>
+                  <span itemProp="addressRegion">Gauteng</span>
+                  <span itemProp="postalCode">1689</span>
+                  <span itemProp="addressCountry">ZA</span>
+                </div>
+                <span itemProp="telephone">+27-64-038-8883</span>
+                <span itemProp="email">lukhele@realnet-web.co.za</span>
+                <span itemProp="priceRange">R5,000+</span>
+                <span itemProp="areaServed">South Africa</span>
+              </div>
+            </motion.div>
+          </div>
+        </header>
+
+        <div className="max-w-4xl mx-auto px-3 sm:px-4 py-8 md:py-12">
+          {/* Progress Steps - Mobile Responsive */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            className="flex justify-center mb-8 md:mb-12 px-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
           >
-            <div className="flex justify-center mb-3 md:mb-4">
-              <div className="p-2 md:p-3 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/20">
-                <FaDesktop className="text-2xl md:text-3xl text-orange-300" />
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-3 md:p-4 border border-gray-700 w-full max-w-2xl">
+              <div className="flex items-center justify-between md:justify-center md:space-x-2 lg:space-x-6">
+                {steps.map((step, index) => {
+                  const IconComponent = step.icon;
+                  return (
+                    <React.Fragment key={step.id}>
+                      <div className="flex flex-col items-center flex-1 md:flex-none">
+                        <div className={`w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl flex items-center justify-center border-2 transition-all duration-300 ${currentStep > step.id
+                            ? 'bg-green-500 border-green-500 shadow-lg shadow-green-500/25'
+                            : currentStep === step.id
+                              ? 'bg-gradient-to-r from-orange-500 to-pink-500 border-transparent shadow-lg shadow-orange-500/25'
+                              : 'border-gray-600 bg-gray-700'
+                          }`}>
+                          <IconComponent className={
+                            `text-sm md:text-base ${currentStep >= step.id ? 'text-white' : 'text-gray-400'}`
+                          } />
+                        </div>
+                        <span className={`text-xs mt-1 md:mt-2 font-medium text-center hidden xs:block ${currentStep >= step.id ? 'text-white' : 'text-gray-400'
+                          }`}>
+                          {step.title}
+                        </span>
+                      </div>
+                      {index < steps.length - 1 && (
+                        <div className={`flex-1 h-1 mx-1 md:mx-2 md:w-4 lg:w-8 rounded-full transition-all duration-300 ${currentStep > step.id ? 'bg-green-500' : 'bg-gray-600'
+                          }`} />
+                      )}
+                    </React.Fragment>
+                  );
+                })}
               </div>
             </div>
-            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-orange-200 px-2">
-              Custom Website Development
-            </h1>
-            <p className="text-base md:text-xl text-orange-100 max-w-2xl mx-auto px-2">
-              Tailored web solutions for your business. Starting from R5,000+
-            </p>
           </motion.div>
-        </div>
-      </header>
 
-      <div className="max-w-4xl mx-auto px-3 sm:px-4 py-8 md:py-12">
-        {/* Progress Steps - Mobile Responsive */}
-        <motion.div 
-          className="flex justify-center mb-8 md:mb-12 px-2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-        >
-          <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-3 md:p-4 border border-gray-700 w-full max-w-2xl">
-            <div className="flex items-center justify-between md:justify-center md:space-x-2 lg:space-x-6">
-              {steps.map((step, index) => {
-                const IconComponent = step.icon;
-                return (
-                  <React.Fragment key={step.id}>
-                    <div className="flex flex-col items-center flex-1 md:flex-none">
-                      <div className={`w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl flex items-center justify-center border-2 transition-all duration-300 ${
-                        currentStep > step.id
-                          ? 'bg-green-500 border-green-500 shadow-lg shadow-green-500/25'
-                          : currentStep === step.id
-                          ? 'bg-gradient-to-r from-orange-500 to-pink-500 border-transparent shadow-lg shadow-orange-500/25'
-                          : 'border-gray-600 bg-gray-700'
-                      }`}>
-                        <IconComponent className={
-                          `text-sm md:text-base ${currentStep >= step.id ? 'text-white' : 'text-gray-400'}`
-                        } />
-                      </div>
-                      <span className={`text-xs mt-1 md:mt-2 font-medium text-center hidden xs:block ${
-                        currentStep >= step.id ? 'text-white' : 'text-gray-400'
-                      }`}>
-                        {step.title}
-                      </span>
-                    </div>
-                    {index < steps.length - 1 && (
-                      <div className={`flex-1 h-1 mx-1 md:mx-2 md:w-4 lg:w-8 rounded-full transition-all duration-300 ${
-                        currentStep > step.id ? 'bg-green-500' : 'bg-gray-600'
-                      }`} />
+          {/* Form Container - Mobile Responsive */}
+          <motion.div
+            className="bg-gray-800/40 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-gray-700/50 shadow-2xl overflow-hidden mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            data-section="quote-form"
+          >
+            <div className="p-1 md:p-2 bg-gradient-to-r from-orange-500/20 to-pink-500/20">
+              <div className="bg-gray-800 rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8">
+                <form onSubmit={handleSubmit} itemScope itemType="https://schema.org/ContactPage">
+                  <AnimatePresence mode="wait">
+                    {/* Step 1: Project Type */}
+                    {currentStep === 1 && (
+                      <ProjectTypeStep
+                        formData={formData}
+                        updateFormData={updateFormData}
+                      />
                     )}
-                  </React.Fragment>
-                );
-              })}
-            </div>
-          </div>
-        </motion.div>
 
-        {/* Form Container - Mobile Responsive */}
-        <motion.div 
-          className="bg-gray-800/40 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-gray-700/50 shadow-2xl overflow-hidden mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-        >
-          <div className="p-1 md:p-2 bg-gradient-to-r from-orange-500/20 to-pink-500/20">
-            <div className="bg-gray-800 rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8">
-              <form onSubmit={handleSubmit}>
-                <AnimatePresence mode="wait">
-                  {/* Step 1: Project Type */}
-                  {currentStep === 1 && (
-                    <ProjectTypeStep
-                      formData={formData}
-                      updateFormData={updateFormData}
-                    />
-                  )}
+                    {/* Step 2: Features */}
+                    {currentStep === 2 && (
+                      <FeaturesStep
+                        formData={formData}
+                        toggleArrayField={toggleArrayField}
+                      />
+                    )}
 
-                  {/* Step 2: Features */}
-                  {currentStep === 2 && (
-                    <FeaturesStep
-                      formData={formData}
-                      toggleArrayField={toggleArrayField}
-                    />
-                  )}
+                    {/* Step 3: Project Details */}
+                    {currentStep === 3 && (
+                      <ProjectDetailsStep
+                        formData={formData}
+                        updateFormData={updateFormData}
+                        handleFileUpload={handleFileUpload}
+                        removeAttachment={removeAttachment}
+                      />
+                    )}
 
-                  {/* Step 3: Project Details */}
-                  {currentStep === 3 && (
-                    <ProjectDetailsStep
-                      formData={formData}
-                      updateFormData={updateFormData}
-                      handleFileUpload={handleFileUpload}
-                      removeAttachment={removeAttachment}
-                    />
-                  )}
+                    {/* Step 4: Contact Information */}
+                    {currentStep === 4 && (
+                      <ContactInfoStep
+                        formData={formData}
+                        updateFormData={updateFormData}
+                      />
+                    )}
 
-                  {/* Step 4: Contact Information */}
-                  {currentStep === 4 && (
-                    <ContactInfoStep
-                      formData={formData}
-                      updateFormData={updateFormData}
-                    />
-                  )}
+                    {/* Step 5: Review & Submit */}
+                    {currentStep === 5 && (
+                      <ReviewStep
+                        formData={formData}
+                        removeAttachment={removeAttachment}
+                      />
+                    )}
+                  </AnimatePresence>
 
-                  {/* Step 5: Review & Submit */}
-                  {currentStep === 5 && (
-                    <ReviewStep
-                      formData={formData}
-                      removeAttachment={removeAttachment}
-                    />
-                  )}
-                </AnimatePresence>
-
-                {/* Navigation - Mobile Responsive */}
-                <div className="flex flex-col sm:flex-row justify-between items-center gap-3 md:gap-4 mt-6 md:mt-8 pt-4 md:pt-6 border-t border-gray-700/50">
-                  <button
-                    type="button"
-                    onClick={prevStep}
-                    disabled={currentStep === 1}
-                    className="w-full sm:w-auto px-4 md:px-6 py-2 md:py-3 border border-gray-600 text-gray-300 rounded-lg md:rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-700/50 hover:border-gray-500 transition-all duration-300 flex items-center justify-center space-x-2 backdrop-blur-sm text-sm md:text-base"
-                  >
-                    <FaArrowLeft className="text-sm" />
-                    <span>Previous</span>
-                  </button>
-
-                  <div className="text-xs md:text-sm text-gray-400 text-center py-2 md:py-0">
-                    Step {currentStep} of {steps.length}
-                  </div>
-
-                  {currentStep < steps.length ? (
+                  {/* Navigation - Mobile Responsive */}
+                  <div className="flex flex-col sm:flex-row justify-between items-center gap-3 md:gap-4 mt-6 md:mt-8 pt-4 md:pt-6 border-t border-gray-700/50">
                     <button
                       type="button"
-                      onClick={nextStep}
-                      className="w-full sm:w-auto px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-lg md:rounded-xl hover:from-orange-600 hover:to-pink-600 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-orange-500/25 text-sm md:text-base"
+                      onClick={prevStep}
+                      disabled={currentStep === 1}
+                      className="w-full sm:w-auto px-4 md:px-6 py-2 md:py-3 border border-gray-600 text-gray-300 rounded-lg md:rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-700/50 hover:border-gray-500 transition-all duration-300 flex items-center justify-center space-x-2 backdrop-blur-sm text-sm md:text-base"
+                      aria-label="Go to previous step"
                     >
-                      <span>Continue</span>
-                      <FaArrowRight className="text-sm" />
+                      <FaArrowLeft className="text-sm" />
+                      <span>Previous</span>
                     </button>
-                  ) : (
-                    <button
-                      type="submit"
-                      className="w-full sm:w-auto px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-lg md:rounded-xl hover:from-green-600 hover:to-emerald-600 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-green-500/25 text-sm md:text-base"
-                    >
-                      <FaCheck className="text-sm" />
-                      <span>Get Quote</span>
-                    </button>
-                  )}
-                </div>
-              </form>
-            </div>
-          </div>
-        </motion.div>
 
-        {/* Package Info - Mobile Responsive */}
-        <motion.div 
-          className="text-center mt-6 md:mt-8 px-2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-        >
-          <div className="bg-gradient-to-r from-orange-500/10 to-pink-500/10 border border-orange-500/20 rounded-xl md:rounded-2xl p-4 md:p-6 backdrop-blur-sm">
-            <h3 className="text-base md:text-lg font-semibold text-orange-300 mb-2 md:mb-3">What's Included:</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 text-xs md:text-sm text-gray-300">
-              <div className="flex items-center justify-center space-x-1 md:space-x-2">
-                <FaDesktop className="text-orange-400 text-sm md:text-base" />
-                <span>Responsive Design</span>
-              </div>
-              <div className="flex items-center justify-center space-x-1 md:space-x-2">
-                <FaShieldAlt className="text-green-400 text-sm md:text-base" />
-                <span>Security</span>
-              </div>
-              <div className="flex items-center justify-center space-x-1 md:space-x-2">
-                <FaMobile className="text-blue-400 text-sm md:text-base" />
-                <span>Mobile Friendly</span>
+                    <div className="text-xs md:text-sm text-gray-400 text-center py-2 md:py-0">
+                      Step {currentStep} of {steps.length}
+                    </div>
+
+                    {currentStep < steps.length ? (
+                      <button
+                        type="button"
+                        onClick={nextStep}
+                        className="w-full sm:w-auto px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-lg md:rounded-xl hover:from-orange-600 hover:to-pink-600 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-orange-500/25 text-sm md:text-base"
+                        aria-label="Continue to next step"
+                      >
+                        <span>Continue</span>
+                        <FaArrowRight className="text-sm" />
+                      </button>
+                    ) : (
+                      <button
+                        type="submit"
+                        className="w-full sm:w-auto px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-lg md:rounded-xl hover:from-green-600 hover:to-emerald-600 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-green-500/25 text-sm md:text-base"
+                        aria-label="Submit custom website quote request"
+                      >
+                        <FaCheck className="text-sm" />
+                        <span>Get Quote</span>
+                      </button>
+                    )}
+                  </div>
+                </form>
               </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+
+          {/* Package Info - Mobile Responsive */}
+          <motion.div
+            className="text-center mt-6 md:mt-8 px-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8 }}
+            data-section="package-info"
+          >
+            <div className="bg-gradient-to-r from-orange-500/10 to-pink-500/10 border border-orange-500/20 rounded-xl md:rounded-2xl p-4 md:p-6 backdrop-blur-sm">
+              <h3 className="text-base md:text-lg font-semibold text-orange-300 mb-2 md:mb-3">What's Included:</h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 text-xs md:text-sm text-gray-300">
+                <div className="flex items-center justify-center space-x-1 md:space-x-2">
+                  <FaDesktop className="text-orange-400 text-sm md:text-base" />
+                  <span>Responsive Design</span>
+                </div>
+                <div className="flex items-center justify-center space-x-1 md:space-x-2">
+                  <FaShieldAlt className="text-green-400 text-sm md:text-base" />
+                  <span>Security</span>
+                </div>
+                <div className="flex items-center justify-center space-x-1 md:space-x-2">
+                  <FaMobile className="text-blue-400 text-sm md:text-base" />
+                  <span>Mobile Friendly</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Trust Signals Section */}
+          <motion.div
+            className="mt-8 md:mt-12 text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+          >
+            <div className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+              <h3 className="text-lg font-semibold text-white mb-4">Why Choose Our Custom Website Development?</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-300">
+                <div className="flex flex-col items-center">
+                  <FaUsers className="text-orange-400 text-xl mb-2" />
+                  <span>Expert Development Team</span>
+                </div>
+                <div className="flex flex-col items-center">
+                  <FaShieldAlt className="text-green-400 text-xl mb-2" />
+                  <span>Secure & Scalable Solutions</span>
+                </div>
+                <div className="flex flex-col items-center">
+                  <FaChartLine className="text-blue-400 text-xl mb-2" />
+                  <span>Performance Optimized</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
-    </div>
+       {/* Related Content Section */}
+      <RelatedContent currentPage="custom-website-quote" />
+    </>
   );
 };
 
@@ -373,11 +507,10 @@ const ProjectTypeStep = ({ formData, updateFormData }) => {
               return (
                 <label
                   key={option.value}
-                  className={`block p-3 md:p-4 border-2 rounded-lg md:rounded-xl cursor-pointer transition-all duration-300 group ${
-                    formData.projectType === option.value
+                  className={`block p-3 md:p-4 border-2 rounded-lg md:rounded-xl cursor-pointer transition-all duration-300 group ${formData.projectType === option.value
                       ? 'border-orange-500 bg-orange-500/10 shadow-lg shadow-orange-500/20'
                       : 'border-gray-600 hover:border-orange-400 hover:bg-orange-500/5'
-                  }`}
+                    }`}
                 >
                   <input
                     type="radio"
@@ -388,11 +521,10 @@ const ProjectTypeStep = ({ formData, updateFormData }) => {
                     className="sr-only"
                   />
                   <div className="flex items-start space-x-2 md:space-x-3">
-                    <div className={`p-1 md:p-2 rounded-lg transition-all duration-300 flex-shrink-0 ${
-                      formData.projectType === option.value
+                    <div className={`p-1 md:p-2 rounded-lg transition-all duration-300 flex-shrink-0 ${formData.projectType === option.value
                         ? 'bg-gradient-to-r from-orange-500 to-pink-500 text-white'
                         : 'bg-gray-700 group-hover:bg-orange-500/20 text-gray-400 group-hover:text-orange-300'
-                    }`}>
+                      }`}>
                       <IconComponent className="text-base md:text-lg" />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -487,11 +619,10 @@ const FeaturesStep = ({ formData, toggleArrayField }) => {
             {features.map((feature) => (
               <label
                 key={feature.id}
-                className={`flex items-center p-2 md:p-3 border-2 rounded-lg cursor-pointer transition-all duration-300 ${
-                  formData.features.includes(feature.id)
+                className={`flex items-center p-2 md:p-3 border-2 rounded-lg cursor-pointer transition-all duration-300 ${formData.features.includes(feature.id)
                     ? 'border-orange-500 bg-orange-500/10'
                     : 'border-gray-600 hover:border-gray-500'
-                }`}
+                  }`}
               >
                 <input
                   type="checkbox"
@@ -865,6 +996,7 @@ const ReviewStep = ({ formData, removeAttachment }) => {
         </div>
       </div>
     </motion.div>
+
   );
 };
 

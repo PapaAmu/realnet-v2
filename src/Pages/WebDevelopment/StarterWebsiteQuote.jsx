@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SEO from "../../SEO";
+import RelatedContent from "../../Components/RelatedContent";
 import {
   FaArrowLeft,
   FaArrowRight,
@@ -12,7 +14,11 @@ import {
   FaTools,
   FaPaperclip,
   FaTimes,
-  FaCloudUploadAlt
+  FaCloudUploadAlt,
+  FaCode,
+  FaMobile,
+  FaShoppingCart,
+  FaCloud
 } from "react-icons/fa";
 
 const StarterWebsiteQuote = () => {
@@ -201,6 +207,43 @@ const StarterWebsiteQuote = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-orange-900 to-gray-900 text-white">
+      <SEO
+        title="Starter Website Quote | Affordable Business Websites South Africa | REALNET"
+        description="Get a free quote for your starter business website. Professional, responsive designs at R3,499 to R5,999. Perfect for small businesses in Johannesburg & Pretoria."
+        keywords={[
+          "starter website quote",
+          "affordable business website",
+          "small business website South Africa",
+          "website development Johannesburg",
+          "responsive website design",
+          "business website package",
+          "website quote South Africa",
+          "starter website package",
+          "web development Pretoria"
+        ]}
+        ogImage="/starter-website-quote-og.jpg"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "serviceType": "Starter Website Development",
+          "provider": {
+            "@type": "Organization",
+            "name": "REALNET WEB SOLUTIONS",
+            "url": "https://realnet-web.co.za"
+          },
+          "areaServed": "ZA",
+          "serviceOutput": "Business Website",
+          "termsOfService": "https://realnet-web.co.za/terms",
+          "offers": {
+            "@type": "Offer",
+            "price": "3499",
+            "priceCurrency": "ZAR",
+            "priceRange": "R3,499 - R5,999",
+            "description": "Starter website package for small businesses"
+          }
+        }}
+      />
+
       {/* Toast Container */}
       <ToastContainer
         position="top-right"
@@ -219,7 +262,10 @@ const StarterWebsiteQuote = () => {
       />
 
       {/* Header - Mobile Responsive */}
-      <header className="relative bg-gradient-to-r from-orange-500 via-pink-500 to-orange-600 py-6 md:py-8 overflow-hidden">
+      <header 
+        className="relative bg-gradient-to-r from-orange-500 via-pink-500 to-orange-600 py-6 md:py-8 overflow-hidden"
+        data-section="quote-header"
+      >
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:40px_40px] md:bg-[size:60px_60px]"></div>
         
@@ -235,7 +281,7 @@ const StarterWebsiteQuote = () => {
               </div>
             </div>
             <h1 className="text-2xl md:text-4xl font-bold mb-2 md:mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white to-orange-200 px-2">
-              Starter Website
+              Starter Website Quote
             </h1>
             <p className="text-base md:text-lg text-orange-100 max-w-2xl mx-auto px-2">
               Perfect for small businesses – R3,499 to R5,999
@@ -294,10 +340,11 @@ const StarterWebsiteQuote = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
+          data-section="quote-form"
         >
           <div className="p-1 md:p-2 bg-gradient-to-r from-orange-500/20 to-pink-500/20">
             <div className="bg-gray-800 rounded-xl p-4 md:p-6 lg:p-8">
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} itemScope itemType="https://schema.org/ContactPage">
                 <AnimatePresence mode="wait">
                   {/* Step 1: Project Type */}
                   {currentStep === 1 && (
@@ -342,6 +389,7 @@ const StarterWebsiteQuote = () => {
                     onClick={prevStep}
                     disabled={currentStep === 1 || isSubmitting}
                     className="w-full sm:w-auto px-4 md:px-6 py-2 md:py-3 border border-gray-600 text-gray-300 rounded-lg md:rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-700/50 hover:border-gray-500 transition-all duration-300 flex items-center justify-center space-x-2 backdrop-blur-sm text-sm md:text-base"
+                    aria-label="Go back to previous step"
                   >
                     <FaArrowLeft className="text-sm" />
                     <span>Back</span>
@@ -357,6 +405,7 @@ const StarterWebsiteQuote = () => {
                       onClick={nextStep}
                       className="w-full sm:w-auto px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-lg md:rounded-xl hover:from-orange-600 hover:to-pink-600 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-orange-500/25 text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed"
                       disabled={isSubmitting}
+                      aria-label="Continue to next step"
                     >
                       <span>Continue</span>
                       <FaArrowRight className="text-sm" />
@@ -366,6 +415,7 @@ const StarterWebsiteQuote = () => {
                       type="submit"
                       disabled={isSubmitting}
                       className="w-full sm:w-auto px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-lg md:rounded-xl hover:from-green-600 hover:to-emerald-600 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-green-500/25 text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed"
+                      aria-label="Submit your starter website quote request"
                     >
                       {isSubmitting ? (
                         <>
@@ -392,9 +442,10 @@ const StarterWebsiteQuote = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
+          data-section="package-features"
         >
           <div className="bg-gradient-to-r from-orange-500/10 to-pink-500/10 border border-orange-500/20 rounded-xl md:rounded-2xl p-4 md:p-6 backdrop-blur-sm">
-            <h3 className="text-base md:text-lg font-semibold text-orange-300 mb-2 md:mb-3">Starter Website Includes:</h3>
+            <h2 className="text-base md:text-lg font-semibold text-orange-300 mb-2 md:mb-3">Starter Website Package Includes:</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 text-xs md:text-sm text-gray-300">
               <div className="flex items-center justify-center space-x-1 md:space-x-2">
                 <FaDesktop className="text-orange-400 text-sm md:text-base" />
@@ -408,10 +459,60 @@ const StarterWebsiteQuote = () => {
                 <FaTools className="text-green-400 text-sm md:text-base" />
                 <span>Basic SEO</span>
               </div>
+              <div className="flex items-center justify-center space-x-1 md:space-x-2">
+                <FaCode className="text-blue-400 text-sm md:text-base" />
+                <span>Mobile-friendly</span>
+              </div>
+              <div className="flex items-center justify-center space-x-1 md:space-x-2">
+                <FaCloud className="text-purple-400 text-sm md:text-base" />
+                <span>1 year hosting</span>
+              </div>
+              <div className="flex items-center justify-center space-x-1 md:space-x-2">
+                <FaShoppingCart className="text-yellow-400 text-sm md:text-base" />
+                <span>Contact forms</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Trust Signals Section */}
+        <motion.div 
+          className="mt-8 md:mt-12 text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+        >
+          <div className="bg-gray-800/30 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 border border-gray-700/50">
+            <h3 className="text-lg md:text-xl font-semibold text-white mb-4">Why Choose Our Starter Websites?</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 text-sm md:text-base">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <FaRocket className="text-orange-400 text-xl" />
+                </div>
+                <h4 className="font-semibold text-orange-300 mb-1">Fast Delivery</h4>
+                <p className="text-gray-300 text-xs md:text-sm">2-3 week turnaround for your business website</p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <FaMobile className="text-green-400 text-xl" />
+                </div>
+                <h4 className="font-semibold text-green-300 mb-1">Mobile Optimized</h4>
+                <p className="text-gray-300 text-xs md:text-sm">Works perfectly on all devices and screen sizes</p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <FaCheck className="text-blue-400 text-xl" />
+                </div>
+                <h4 className="font-semibold text-blue-300 mb-1">SEO Ready</h4>
+                <p className="text-gray-300 text-xs md:text-sm">Built with search engine optimization in mind</p>
+              </div>
             </div>
           </div>
         </motion.div>
       </div>
+
+      {/* Related Content Section */}
+      <RelatedContent currentPage="starter-website-quote" />
     </div>
   );
 };
@@ -423,6 +524,11 @@ const ProjectTypeStep = ({ formData, updateFormData }) => {
       initial="hidden"
       animate="visible"
       exit="hidden"
+      variants={{
+        hidden: { opacity: 0, x: -50 },
+        visible: { opacity: 1, x: 0 }
+      }}
+      transition={{ duration: 0.5 }}
     >
       <div className="text-center mb-6 md:mb-8">
         <h2 className="text-xl md:text-3xl font-bold mb-2 md:mb-3 bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-pink-400">
@@ -498,6 +604,11 @@ const BusinessInfoStep = ({ formData, updateFormData, handleFileUpload, removeAt
       initial="hidden"
       animate="visible"
       exit="hidden"
+      variants={{
+        hidden: { opacity: 0, x: 50 },
+        visible: { opacity: 1, x: 0 }
+      }}
+      transition={{ duration: 0.5 }}
     >
       <div className="text-center mb-6 md:mb-8">
         <h2 className="text-xl md:text-3xl font-bold mb-2 md:mb-3 bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-pink-400">
@@ -519,6 +630,7 @@ const BusinessInfoStep = ({ formData, updateFormData, handleFileUpload, removeAt
             }
             placeholder="Your business name"
             className="w-full bg-gray-700/50 border border-gray-600 rounded-lg md:rounded-xl px-3 md:px-4 py-2 md:py-3 text-white placeholder-gray-400 focus:border-orange-500 focus:outline-none backdrop-blur-sm text-sm md:text-base"
+            aria-required="false"
           />
         </div>
         
@@ -535,6 +647,7 @@ const BusinessInfoStep = ({ formData, updateFormData, handleFileUpload, removeAt
             rows={3}
             placeholder="Describe your goals and website needs..."
             className="w-full bg-gray-700/50 border border-gray-600 rounded-lg md:rounded-xl px-3 md:px-4 py-2 md:py-3 text-white placeholder-gray-400 focus:border-orange-500 focus:outline-none resize-none backdrop-blur-sm text-sm md:text-base"
+            aria-required="true"
           />
         </div>
 
@@ -549,13 +662,14 @@ const BusinessInfoStep = ({ formData, updateFormData, handleFileUpload, removeAt
               className="hidden"
               id="file-upload"
               accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.zip,.psd,.ai,.fig,.xd"
+              aria-describedby="file-upload-help"
             />
             <label htmlFor="file-upload" className="cursor-pointer block">
               <FaCloudUploadAlt className="text-xl md:text-2xl text-orange-400 mx-auto mb-1 md:mb-2" />
               <div className="text-gray-300 text-sm md:text-base mb-1">
                 Click to upload files
               </div>
-              <div className="text-gray-400 text-xs md:text-sm">
+              <div id="file-upload-help" className="text-gray-400 text-xs md:text-sm">
                 Logos, images, design references (Max: 10MB per file)
               </div>
             </label>
@@ -584,6 +698,7 @@ const BusinessInfoStep = ({ formData, updateFormData, handleFileUpload, removeAt
                       type="button"
                       onClick={() => removeAttachment(attachment.id)}
                       className="text-red-400 hover:text-red-300 transition-colors flex-shrink-0 ml-2"
+                      aria-label={`Remove ${attachment.name}`}
                     >
                       <FaTimes className="text-sm md:text-base" />
                     </button>
@@ -605,6 +720,11 @@ const ContactDetailsStep = ({ formData, updateFormData }) => {
       initial="hidden"
       animate="visible"
       exit="hidden"
+      variants={{
+        hidden: { opacity: 0, x: -50 },
+        visible: { opacity: 1, x: 0 }
+      }}
+      transition={{ duration: 0.5 }}
     >
       <div className="text-center mb-6 md:mb-8">
         <h2 className="text-xl md:text-3xl font-bold mb-2 md:mb-3 bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-pink-400">
@@ -627,6 +747,7 @@ const ContactDetailsStep = ({ formData, updateFormData }) => {
             }
             placeholder="Your full name"
             className="w-full bg-gray-700/50 border border-gray-600 rounded-lg md:rounded-xl px-3 md:px-4 py-2 md:py-3 text-white placeholder-gray-400 focus:border-orange-500 focus:outline-none backdrop-blur-sm text-sm md:text-base"
+            aria-required="true"
           />
         </div>
         
@@ -643,6 +764,7 @@ const ContactDetailsStep = ({ formData, updateFormData }) => {
             }
             placeholder="your@email.com"
             className="w-full bg-gray-700/50 border border-gray-600 rounded-lg md:rounded-xl px-3 md:px-4 py-2 md:py-3 text-white placeholder-gray-400 focus:border-orange-500 focus:outline-none backdrop-blur-sm text-sm md:text-base"
+            aria-required="true"
           />
         </div>
         
@@ -659,6 +781,7 @@ const ContactDetailsStep = ({ formData, updateFormData }) => {
             }
             placeholder="+27 XXX XXX XXXX"
             className="w-full bg-gray-700/50 border border-gray-600 rounded-lg md:rounded-xl px-3 md:px-4 py-2 md:py-3 text-white placeholder-gray-400 focus:border-orange-500 focus:outline-none backdrop-blur-sm text-sm md:text-base"
+            aria-required="true"
           />
         </div>
       </div>
@@ -673,6 +796,11 @@ const ReviewStep = ({ formData, removeAttachment, isSubmitting }) => {
       initial="hidden"
       animate="visible"
       exit="hidden"
+      variants={{
+        hidden: { opacity: 0, x: 50 },
+        visible: { opacity: 1, x: 0 }
+      }}
+      transition={{ duration: 0.5 }}
     >
       <div className="text-center mb-6 md:mb-8">
         <h2 className="text-xl md:text-3xl font-bold mb-2 md:mb-3 bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-pink-400">
@@ -736,6 +864,7 @@ const ReviewStep = ({ formData, removeAttachment, isSubmitting }) => {
                     onClick={() => removeAttachment(attachment.id)}
                     className="text-red-400 hover:text-red-300 transition-colors flex-shrink-0 ml-2"
                     disabled={isSubmitting}
+                    aria-label={`Remove ${attachment.name}`}
                   >
                     <FaTimes className="text-sm md:text-base" />
                   </button>
