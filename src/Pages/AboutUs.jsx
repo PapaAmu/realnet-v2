@@ -63,8 +63,8 @@ const AboutUs = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.5
@@ -75,14 +75,14 @@ const AboutUs = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       {/* Hero Section */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="bg-gradient-to-r from-gray-900 via-black to-gray-900 text-white py-20 pt-32"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -90,7 +90,7 @@ const AboutUs = () => {
           >
             About <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-500">REALNET</span>
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -102,7 +102,7 @@ const AboutUs = () => {
       </motion.section>
 
       {/* Our Story Section */}
-      <motion.section 
+      <motion.section
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -123,7 +123,7 @@ const AboutUs = () => {
                 Based in Pretoria, we serve clients throughout South Africa and beyond, bringing together local expertise with global best practices to deliver exceptional results.
               </p>
             </motion.div>
-            <motion.div 
+            <motion.div
               variants={itemVariants}
               className="relative"
             >
@@ -143,7 +143,7 @@ const AboutUs = () => {
       </motion.section>
 
       {/* Values Section */}
-      <motion.section 
+      <motion.section
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -157,10 +157,10 @@ const AboutUs = () => {
               These core values guide everything we do and shape our approach to client relationships and project delivery.
             </p>
           </motion.div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
                 variants={itemVariants}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
@@ -178,7 +178,7 @@ const AboutUs = () => {
       </motion.section>
 
       {/* Stats Section */}
-      <motion.section 
+      <motion.section
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -192,10 +192,10 @@ const AboutUs = () => {
               Numbers that reflect our commitment to excellence and client satisfaction.
             </p>
           </motion.div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
                 variants={itemVariants}
                 whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
@@ -212,7 +212,7 @@ const AboutUs = () => {
       </motion.section>
 
       {/* Services Overview */}
-      <motion.section 
+      <motion.section
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -226,10 +226,10 @@ const AboutUs = () => {
               We specialize in creating comprehensive digital solutions that help businesses succeed online.
             </p>
           </motion.div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
                 variants={itemVariants}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
@@ -247,7 +247,7 @@ const AboutUs = () => {
       </motion.section>
 
       {/* Call to Action */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -259,7 +259,7 @@ const AboutUs = () => {
           <p className="text-lg text-gray-600 mb-8">
             Let's discuss how we can help transform your ideas into reality and take your business to the next level.
           </p>
-          <motion.div 
+          <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

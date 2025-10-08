@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { 
   FaEnvelope, 
@@ -7,10 +7,26 @@ import {
   FaLinkedin, 
   FaGithub,
   FaArrowRight,
-  FaHeart
+  FaHeart,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaClock
 } from "react-icons/fa";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [isSubscribed, setIsSubscribed] = useState(false);
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (email) {
+      setIsSubscribed(true);
+      setEmail("");
+      // Here you would typically send the email to your backend
+      console.log("Subscribed email:", email);
+    }
+  };
+
   // Animation variants
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -40,37 +56,14 @@ const Footer = () => {
         }}
       />
       
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-gray-900/95 to-gray-800/95"></div>
+      {/* Enhanced Dark Overlay */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-gray-900/97 via-gray-900/95 to-gray-800/97"></div>
       
-      {/* Animated background elements */}
+      {/* Simplified background elements */}
       <div className="absolute inset-0 -z-5 overflow-hidden">
-        {/* Primary gradient overlay */}
-        <div className="absolute -top-40 -left-40 transform-gpu overflow-hidden blur-3xl sm:-top-80 sm:-left-80">
+        <div className="absolute -top-40 -right-40 transform-gpu overflow-hidden blur-3xl">
           <div
-            className="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-black to-black/90"
-            style={{
-              clipPath:
-                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-            }}
-          />
-        </div>
-        
-        {/* Secondary gradient element */}
-        <div className="absolute top-0 right-0 transform-gpu overflow-hidden blur-3xl sm:top-10 sm:right-10">
-          <div
-            className="aspect-[1155/678] w-[50.1875rem] bg-gradient-to-br from-blue-500/15 to-cyan-500/15"
-            style={{
-              clipPath:
-                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-            }}
-          />
-        </div>
-        
-        {/* Tertiary gradient element */}
-        <div className="absolute bottom-0 left-0 transform-gpu overflow-hidden blur-3xl sm:-bottom-20 sm:left-10">
-          <div
-            className="aspect-[1155/678] w-[40.1875rem] bg-gradient-to-tr from-pink-500/10 to-orange-500/10"
+            className="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-orange-500/5 to-pink-500/5"
             style={{
               clipPath:
                 "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
@@ -80,89 +73,72 @@ const Footer = () => {
       </div>
       
       <div className="max-w-screen-xl mx-auto px-4 md:px-8 relative z-10">
+        {/* Newsletter Section */}
         <motion.div 
-          className="flex justify-between items-center gap-12 md:flex-row flex-col mb-16"
+          className="text-center mb-16"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeIn}
         >
-          <div className="flex-1 max-w-lg">
-            <h3 className="text-white text-2xl font-bold">
-              Get our <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-pink-400">beautiful newsletter</span> straight to your inbox.
+          <div className="bg-gray-800/40 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 max-w-2xl mx-auto">
+            <h3 className="text-white text-2xl font-bold mb-3">
+              Stay <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-pink-400">Updated</span> with Our Latest Offers
             </h3>
-            <p className="text-gray-400 mt-2">Stay updated with our latest services and offers</p>
-          </div>
-          <div className="flex items-center mt-6 md:mt-0 gap-4">
-            <div className="relative w-full md:w-64">
-              <FaEnvelope className="w-5 h-5 text-gray-400 absolute left-3 inset-y-0 my-auto" />
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="w-full pl-10 pr-4 py-3 text-gray-300 bg-gray-700/80 backdrop-blur-sm outline-none border border-gray-600 focus:border-orange-500 shadow-sm rounded-lg transition-colors duration-300"
-              />
-            </div>
-            <motion.button 
-              className="py-3 px-5 font-medium text-sm text-center text-white bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 rounded-lg shadow-lg flex items-center gap-2"
-              whileHover={{ y: -2 }}
-              whileTap={{ y: 0 }}
-            >
-              Subscribe <FaArrowRight className="text-xs" />
-            </motion.button>
+            <p className="text-gray-300 mb-6">Get exclusive web development tips and special offers delivered to your inbox</p>
+            
+            {isSubscribed ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/30 rounded-xl p-4"
+              >
+                <p className="text-green-400 font-semibold">🎉 Thank you for subscribing!</p>
+                <p className="text-green-300 text-sm mt-1">We've sent a welcome email to your inbox.</p>
+              </motion.div>
+            ) : (
+              <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <div className="relative w-full sm:w-80">
+                  <FaEnvelope className="w-5 h-5 text-gray-400 absolute left-3 inset-y-0 my-auto" />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    className="w-full pl-10 pr-4 py-3 text-white bg-gray-700/80 backdrop-blur-sm outline-none border border-gray-600 focus:border-orange-500 shadow-sm rounded-xl transition-all duration-300"
+                    required
+                  />
+                </div>
+                <motion.button 
+                  type="submit"
+                  className="py-3 px-6 font-medium text-white bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 rounded-xl shadow-lg flex items-center gap-2 transition-all duration-300 whitespace-nowrap"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Subscribe <FaArrowRight className="text-xs" />
+                </motion.button>
+              </form>
+            )}
           </div>
         </motion.div>
 
+        {/* Links Grid - All original columns included */}
         <motion.div 
-          className="flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12 justify-between mb-16"
+          className="grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-12 justify-between mb-16"
           variants={staggerChildren}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
         >
+          {/* Resources Column */}
           <motion.ul className="space-y-4 text-gray-300" variants={fadeIn}>
             <h4 className="text-orange-400 font-semibold pb-2 text-lg">Resources</h4>
             <li>
               <a
-                href="#"
-                className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
-              >
-                <span className="group-hover:translate-x-1 transition-transform duration-200">Contact</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
+                href="/contact-us"
                 className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
               >
                 <span className="group-hover:translate-x-1 transition-transform duration-200">Support</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
-              >
-                <span className="group-hover:translate-x-1 transition-transform duration-200">Documentation</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
-              >
-                <span className="group-hover:translate-x-1 transition-transform duration-200">Pricing</span>
-              </a>
-            </li>
-          </motion.ul>
-          
-          <motion.ul className="space-y-4 text-gray-300" variants={fadeIn}>
-            <h4 className="text-orange-400 font-semibold pb-2 text-lg">About</h4>
-            <li>
-              <a
-                href="#"
-                className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
-              >
-                <span className="group-hover:translate-x-1 transition-transform duration-200">Terms</span>
               </a>
             </li>
             <li>
@@ -175,22 +151,44 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="#"
+                href="https://admin.realnet-web.co.za"
                 className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
               >
-                <span className="group-hover:translate-x-1 transition-transform duration-200">Privacy Policy</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
-              >
-                <span className="group-hover:translate-x-1 transition-transform duration-200">About RealNet</span>
+                <span className="group-hover:translate-x-1 transition-transform duration-200">Admin Login</span>
               </a>
             </li>
           </motion.ul>
           
+          {/* Quick Quotes Column */}
+          <motion.ul className="space-y-4 text-gray-300" variants={fadeIn}>
+            <h4 className="text-orange-400 font-semibold pb-2 text-lg">Quick Quotes</h4>
+            <li>
+              <a
+                href="/features/web-development/starter-website-quote"
+                className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
+              >
+                <span className="group-hover:translate-x-1 transition-transform duration-200">Starter Business Website</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/features/web-development/ecommerce-website-quote"
+                className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
+              >
+                <span className="group-hover:translate-x-1 transition-transform duration-200">Ecommerce Website</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/features/web-development/custom-website-quote"
+                className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
+              >
+                <span className="group-hover:translate-x-1 transition-transform duration-200">Advanced Custom Website</span>
+              </a>
+            </li>
+          </motion.ul>
+          
+          {/* Explore Column */}
           <motion.ul className="space-y-4 text-gray-300" variants={fadeIn}>
             <h4 className="text-orange-400 font-semibold pb-2 text-lg">Explore</h4>
             <li>
@@ -227,11 +225,12 @@ const Footer = () => {
             </li>
           </motion.ul>
           
+          {/* Company Column */}
           <motion.ul className="space-y-4 text-gray-300" variants={fadeIn}>
             <h4 className="text-orange-400 font-semibold pb-2 text-lg">Company</h4>
             <li>
               <a
-                href="#"
+                href="/about-us"
                 className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
               >
                 <span className="group-hover:translate-x-1 transition-transform duration-200">About Us</span>
@@ -239,15 +238,15 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="#"
+                href="/features/web-development/live-projects"
                 className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
               >
-                <span className="group-hover:translate-x-1 transition-transform duration-200">Pricing</span>
+                <span className="group-hover:translate-x-1 transition-transform duration-200">Projects</span>
               </a>
             </li>
             <li>
               <a
-                href="contact-us"
+                href="/contact-us"
                 className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
               >
                 <span className="group-hover:translate-x-1 transition-transform duration-200">Contact Us</span>
@@ -255,54 +254,68 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="#"
+                href="/resources"
                 className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
               >
-                <span className="group-hover:translate-x-1 transition-transform duration-200">Careers</span>
+                <span className="group-hover:translate-x-1 transition-transform duration-200">Resources</span>
               </a>
             </li>
           </motion.ul>
         </motion.div>
 
+        {/* Bottom Bar */}
         <motion.div 
-          className="py-8 border-t border-gray-700/50 flex items-center justify-between sm:flex-row flex-col gap-4"
+          className="py-6 border-t border-gray-700/50 flex items-center justify-between flex-col sm:flex-row gap-4 text-center sm:text-left"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeIn}
-        >
-          <p className="text-gray-400 text-sm flex items-center gap-1">
-            © 2025 RealNet Web Solutions (PTY) - Made with <FaHeart className="text-red-500 mx-1" /> in South Africa
-          </p>
-          <div className="flex items-center gap-5 text-gray-400">
-            <motion.a 
-              href="#" 
-              className="hover:text-orange-500 transition-colors duration-300"
-              whileHover={{ y: -3 }}
-            >
-              <FaInstagram className="w-5 h-5" />
-            </motion.a>
-            <motion.a 
-              href="#" 
-              className="hover:text-orange-500 transition-colors duration-300"
-              whileHover={{ y: -3 }}
-            >
-              <FaFacebook className="w-5 h-5" />
-            </motion.a>
-            <motion.a 
-              href="#" 
-              className="hover:text-orange-500 transition-colors duration-300"
-              whileHover={{ y: -3 }}
-            >
-              <FaLinkedin className="w-5 h-5" />
-            </motion.a>
-            <motion.a 
-              href="#" 
-              className="hover:text-orange-500 transition-colors duration-300"
-              whileHover={{ y: -3 }}
-            >
-              <FaGithub className="w-5 h-5" />
-            </motion.a>
+        >  
+          <div className="flex items-center gap-4 flex-col sm:flex-row">
+            <div className="flex items-center gap-3">
+              <img src="/logo.png" className="h-8 invert" alt="RealNet Web Solutions" />
+              <span className="text-white font-semibold">RealNet Web</span>
+            </div>
+            <p className="text-gray-400 text-sm">
+              © {new Date().getFullYear()} RealNet Web Solutions. All rights reserved.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-4 flex-col sm:flex-row">
+            <p className="text-orange-400 text-sm flex items-center gap-1">
+              "Empowering Businesses with Dignity and Digital Excellence"
+            </p>
+            
+            <div className="flex items-center gap-5 text-gray-400">
+              <motion.a 
+                href="https://www.instagram.com/realnet_web/" 
+                className="hover:text-orange-500 transition-colors duration-300"
+                whileHover={{ y: -3 }}
+              >
+                <FaInstagram className="w-5 h-5" />
+              </motion.a>
+              <motion.a 
+                href="https://web.facebook.com/profile.php?id=61565067420433" 
+                className="hover:text-orange-500 transition-colors duration-300"
+                whileHover={{ y: -3 }}
+              >
+                <FaFacebook className="w-5 h-5" />
+              </motion.a>
+              <motion.a 
+                href="https://www.linkedin.com/company/realnet-web-solutions-pty" 
+                className="hover:text-orange-500 transition-colors duration-300"
+                whileHover={{ y: -3 }}
+              >
+                <FaLinkedin className="w-5 h-5" />
+              </motion.a>
+              <motion.a 
+                href="https://github.com/PapaAmu" 
+                className="hover:text-orange-500 transition-colors duration-300"
+                whileHover={{ y: -3 }}
+              >
+                <FaGithub className="w-5 h-5" />
+              </motion.a>
+            </div>
           </div>
         </motion.div>
       </div>

@@ -90,6 +90,7 @@ const WebsiteDevelopment = () => {
         "Email Accounts",
       ],
       icon: <FaRocket className="text-2xl" />,
+      url:"/features/web-development/starter-website-quote",
     },
     {
       name: "E-Commerce Store",
@@ -109,6 +110,8 @@ const WebsiteDevelopment = () => {
 
       ],
       icon: <FaShoppingCart className="text-2xl" />,
+            url:"/features/web-development/ecommerce-website-quote",
+
     },
     {
       name: "Advanced Custom",
@@ -126,6 +129,7 @@ const WebsiteDevelopment = () => {
         "SSL Certificate",
       ],
       icon: <FaCrown className="text-2xl" />,
+      url:"/features/web-development/custom-website-quote",
     },
   ];
 
@@ -340,15 +344,17 @@ const WebsiteDevelopment = () => {
                     ))}
                   </ul>
 
-                  <button
-                    className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 ${
-                      pkg.popular
-                        ? "bg-gradient-to-r from-orange-500 to-pink-500 text-white hover:from-orange-600 hover:to-pink-600"
-                        : "bg-gray-700 text-white hover:bg-gray-600"
-                    }`}
-                  >
-                    Get Started
-                  </button>
+                  <a href={pkg.url}>
+                    <button
+                      className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 ${
+                        pkg.popular
+                          ? "bg-gradient-to-r from-orange-500 to-pink-500 text-white hover:from-orange-600 hover:to-pink-600"
+                          : "bg-gray-700 text-white hover:bg-gray-600"
+                      }`}
+                    >
+                      Get Started
+                    </button>
+                  </a>
                 </div>
               </motion.div>
             ))}
