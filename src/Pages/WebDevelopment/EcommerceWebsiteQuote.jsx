@@ -1,6 +1,8 @@
 // pages/ecommerce-website-quote.jsx
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { 
   FaArrowLeft, 
   FaArrowRight, 
@@ -15,6 +17,7 @@ import {
 
 const EcommerceWebsiteQuote = () => {
   const [currentStep, setCurrentStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     projectType: '', // 'new', 'redesign', 'improve'
     businessName: '',
@@ -55,6 +58,14 @@ const EcommerceWebsiteQuote = () => {
 
   const handleFileUpload = (e) => {
     const files = Array.from(e.target.files);
+    
+    // Validate file sizes (10MB max)
+    const oversizedFiles = files.filter(file => file.size > 10 * 1024 * 1024);
+    if (oversizedFiles.length > 0) {
+      toast.error("Some files exceed the 10MB size limit. Please choose smaller files.");
+      return;
+    }
+
     const newAttachments = files.map(file => ({
       id: Math.random().toString(36).substr(2, 9),
       file,
@@ -67,6 +78,10 @@ const EcommerceWebsiteQuote = () => {
       ...prev,
       attachments: [...prev.attachments, ...newAttachments]
     }));
+
+    if (files.length > 0) {
+      toast.success(`${files.length} file(s) added successfully!`);
+    }
   };
 
   const removeAttachment = (id) => {
@@ -74,9 +89,24 @@ const EcommerceWebsiteQuote = () => {
       ...prev,
       attachments: prev.attachments.filter(att => att.id !== id)
     }));
+    toast.info("File removed");
   };
 
   const nextStep = () => {
+    // Validate current step before proceeding
+    if (currentStep === 1 && !formData.projectType) {
+      toast.error("Please select a project type");
+      return;
+    }
+    if (currentStep === 2 && (!formData.productsCount || !formData.description)) {
+      toast.error("Please provide products count and project description");
+      return;
+    }
+    if (currentStep === 3 && (!formData.contact.fullName || !formData.contact.email || !formData.contact.phone)) {
+      toast.error("Please fill in all contact details");
+      return;
+    }
+    
     setCurrentStep(prev => Math.min(prev + 1, steps.length));
   };
 
@@ -84,19 +114,90 @@ const EcommerceWebsiteQuote = () => {
     setCurrentStep(prev => Math.max(prev - 1, 1));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Ecommerce website quote submitted:', formData);
-    
-    // Create FormData for file upload
-    const submitData = new FormData();
-    submitData.append('formData', JSON.stringify(formData));
-    
-    formData.attachments.forEach(attachment => {
-      submitData.append('attachments', attachment.file);
-    });
+    setIsSubmitting(true);
 
-    alert('Thank you! We\'ll contact you within 24 hours to discuss your ecommerce store.');
+    try {
+      // Create FormData for file upload
+      const submitData = new FormData();
+      
+      // Add form data as flat structure that matches Laravel validation
+      submitData.append('projectType', formData.projectType);
+      submitData.append('businessName', formData.businessName || '');
+      submitData.append('productsCount', formData.productsCount);
+      submitData.append('description', formData.description);
+      submitData.append('contact_full_name', formData.contact.fullName);
+      submitData.append('contact_email', formData.contact.email);
+      submitData.append('contact_phone', formData.contact.phone);
+      
+      // Add attachments
+      formData.attachments.forEach(attachment => {
+        submitData.append('attachments[]', attachment.file);
+      });
+
+      console.log('Submitting ecommerce form data:', {
+        projectType: formData.projectType,
+        businessName: formData.businessName,
+        productsCount: formData.productsCount,
+        description: formData.description,
+        contact_full_name: formData.contact.fullName,
+        contact_email: formData.contact.email,
+        contact_phone: formData.contact.phone,
+        attachments_count: formData.attachments.length
+      });
+
+      // Submit to Laravel API
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL || 'http://localhost:8000'}/api/v1/ecommerce-website-quote`, {
+        method: 'POST',
+        body: submitData,
+        headers: {
+          'Accept': 'application/json',
+          // Let browser set Content-Type with boundary for FormData
+        },
+      });
+
+      const result = await response.json();
+
+      console.log('API Response:', response.status, result);
+
+      if (response.ok) {
+        toast.success(result.message || "Thank you! We'll contact you within 24 hours to discuss your ecommerce store.");
+        
+        // Reset form
+        setFormData({
+          projectType: '',
+          businessName: '',
+          productsCount: '',
+          description: '',
+          attachments: [],
+          contact: {
+            email: '',
+            fullName: '',
+            phone: '',
+          }
+        });
+        setCurrentStep(1);
+      } else {
+        // Handle validation errors or other errors
+        console.error('API Error:', result);
+        if (result.errors) {
+          // Show all validation errors
+          Object.values(result.errors).forEach(errorArray => {
+            errorArray.forEach(error => {
+              toast.error(error);
+            });
+          });
+        } else {
+          toast.error(result.message || "Something went wrong. Please try again.");
+        }
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      toast.error("Network error. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const fadeIn = {
@@ -106,6 +207,23 @@ const EcommerceWebsiteQuote = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white">
+      {/* Toast Container */}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="colored"
+        toastClassName={() =>
+          "relative flex p-4 rounded-xl justify-between overflow-hidden cursor-pointer bg-gradient-to-r from-blue-400 to-purple-500 text-white shadow-lg"
+        }
+        bodyClassName={() => "text-sm font-medium flex items-center"}
+        progressClassName={() => "bg-white"}
+      />
+
       {/* Header - Mobile Responsive */}
       <header className="relative bg-gradient-to-r from-blue-500 via-purple-500 to-blue-600 py-6 md:py-8 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-20"></div>
@@ -218,6 +336,7 @@ const EcommerceWebsiteQuote = () => {
                     <ReviewStep
                       formData={formData}
                       removeAttachment={removeAttachment}
+                      isSubmitting={isSubmitting}
                     />
                   )}
                 </AnimatePresence>
@@ -227,7 +346,7 @@ const EcommerceWebsiteQuote = () => {
                   <button
                     type="button"
                     onClick={prevStep}
-                    disabled={currentStep === 1}
+                    disabled={currentStep === 1 || isSubmitting}
                     className="w-full sm:w-auto px-4 md:px-6 py-2 md:py-3 border border-gray-600 text-gray-300 rounded-lg md:rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-700/50 hover:border-gray-500 transition-all duration-300 flex items-center justify-center space-x-2 backdrop-blur-sm text-sm md:text-base"
                   >
                     <FaArrowLeft className="text-sm" />
@@ -242,7 +361,8 @@ const EcommerceWebsiteQuote = () => {
                     <button
                       type="button"
                       onClick={nextStep}
-                      className="w-full sm:w-auto px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg md:rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-blue-500/25 text-sm md:text-base"
+                      className="w-full sm:w-auto px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg md:rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-blue-500/25 text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed"
+                      disabled={isSubmitting}
                     >
                       <span>Continue</span>
                       <FaArrowRight className="text-sm" />
@@ -250,10 +370,20 @@ const EcommerceWebsiteQuote = () => {
                   ) : (
                     <button
                       type="submit"
-                      className="w-full sm:w-auto px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-lg md:rounded-xl hover:from-green-600 hover:to-emerald-600 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-green-500/25 text-sm md:text-base"
+                      disabled={isSubmitting}
+                      className="w-full sm:w-auto px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-lg md:rounded-xl hover:from-green-600 hover:to-emerald-600 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg shadow-green-500/25 text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <FaCheck className="text-sm" />
-                      <span>Submit Request</span>
+                      {isSubmitting ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                          <span>Submitting...</span>
+                        </>
+                      ) : (
+                        <>
+                          <FaCheck className="text-sm" />
+                          <span>Submit Request</span>
+                        </>
+                      )}
                     </button>
                   )}
                 </div>
@@ -554,7 +684,7 @@ const ContactInfoStep = ({ formData, updateFormData }) => {
 };
 
 // Step 4: Review & Submit
-const ReviewStep = ({ formData, removeAttachment }) => {
+const ReviewStep = ({ formData, removeAttachment, isSubmitting }) => {
   return (
     <motion.div
       initial="hidden"
@@ -633,6 +763,7 @@ const ReviewStep = ({ formData, removeAttachment }) => {
                     type="button"
                     onClick={() => removeAttachment(attachment.id)}
                     className="text-red-400 hover:text-red-300 transition-colors flex-shrink-0 ml-2"
+                    disabled={isSubmitting}
                   >
                     <FaTimes className="text-sm md:text-base" />
                   </button>
