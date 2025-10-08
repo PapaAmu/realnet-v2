@@ -21,7 +21,7 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import SEO from "../SEO";
-import RelatedContent from "../components/RelatedContent";
+import RelatedContent from "../Components/RelatedContent";
 
 const WebSoftware = () => {
   // Animation variants

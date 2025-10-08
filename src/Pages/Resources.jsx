@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import RelatedContent from "../components/RelatedContent";
+import RelatedContent from "../Components/RelatedContent";
 import SEO from "../SEO";
 import { 
   FaCode, 

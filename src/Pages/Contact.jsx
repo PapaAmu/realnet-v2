@@ -14,6 +14,8 @@ import {
   FaGithub,
 } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { trackFormSubmission, trackEvent, trackConversion } from "../Components/AnalyticsTracker";
+
 // Custom loader component with advanced animations
 const AdvancedLoader = () => {
   return (

@@ -20,6 +20,8 @@ import {
   FaShoppingCart,
   FaCloud
 } from "react-icons/fa";
+import { trackFormSubmission, trackEvent, trackConversion } from "../../Components/AnalyticsTracker";
+
 
 const StarterWebsiteQuote = () => {
   const [currentStep, setCurrentStep] = useState(1);

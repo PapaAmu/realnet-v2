@@ -19,6 +19,10 @@ import {
 } from "react-icons/fa";
 import SEO from "./../SEO";
 import RelatedContent from "./../Components/RelatedContent";
+import { trackFormSubmission, trackEvent, trackConversion } from "../Components/AnalyticsTracker";
+
+
+
 const HostingAndEmail = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState("professional");

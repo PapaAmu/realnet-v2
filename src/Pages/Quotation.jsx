@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { trackFormSubmission, trackEvent, trackConversion } from "../components/AnalyticsTracker";
+import { trackFormSubmission, trackEvent, trackConversion } from "../Components/AnalyticsTracker";
 import {
   FaPhone,
   FaEnvelope,

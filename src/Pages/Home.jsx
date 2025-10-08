@@ -1,18 +1,15 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
-import Brand from "../components/Brand";
-import Boost from "../components/CompanyBoost";
-import MobileAdvert from "../components/MobileAdvert";
-import FAQ from "../components/FAQ";
-import OurStack from "../components/OurStack";
-import Footer from "../components/Footer";
-import Industries from "../components/Industries";
+import Hero from "../Components/Hero";
+import Brand from "../Components/Brand";
+import Boost from "../Components/CompanyBoost";
+import MobileAdvert from "../Components/MobileAdvert";
+import FAQ from "../Components/FAQ";
+import OurStack from "../Components/OurStack";
+import Industries from "../Components/Industries";
 
 const Home = () => {
   return (
     <div className="overflow-x-hidden">
-      
       <Hero />
       <Brand />
       <Boost />

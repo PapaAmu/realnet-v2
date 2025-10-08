@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 import { FaUsers, FaLightbulb, FaHeart, FaRocket, FaStar, FaCode, FaMobile, FaGlobe } from "react-icons/fa";
 import SEO from "../SEO";
 import RelatedContent from "../Components/RelatedContent";
+import { trackFormSubmission, trackEvent, trackConversion } from "../Components/AnalyticsTracker";
+
+
 const AboutUs = () => {
   const values = [
     {

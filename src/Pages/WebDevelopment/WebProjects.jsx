@@ -9,6 +9,8 @@ import preciousImg from "../../assets/images/projects/precious.webp";
 import siyahlaselaImg from "../../assets/images/projects/siyahlasela.webp";
 import SEO from "../../SEO";
 import RelatedContent from "../../Components/RelatedContent";
+import { trackFormSubmission, trackEvent, trackConversion } from "../../Components/AnalyticsTracker";
+
 
 const WebProjects = () => {
   // Animation variants
