@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import bg_image from "../assets/images/bg_image.png";
 import SEO from "../SEO";
 import RelatedContent from "../Components/RelatedContent";
@@ -74,6 +75,7 @@ const AdvancedLoader = () => {
 };
 
 const Contact = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -112,6 +114,11 @@ const Contact = () => {
         trackEvent('contact_submitted', 'conversions', formData.subject, 1);
         
         setFormData({ name: "", email: "", subject: "", message: "" });
+        
+        // Redirect to success page after a short delay
+        setTimeout(() => {
+          navigate('/form-success?type=contact');
+        }, 1500);
       } else {
         toast.error(data.message || "Failed to send message.");
       }

@@ -206,20 +206,11 @@ const Quotation = ({ onClose }) => {
         });
         setSubmitStatus("success");
         
-        // Start countdown for redirect
-        let countdown = 3;
-        setRedirectTimer(countdown);
-        
-        const timerInterval = setInterval(() => {
-          countdown -= 1;
-          setRedirectTimer(countdown);
-          
-          if (countdown <= 0) {
-            clearInterval(timerInterval);
-            navigate('/');
-            if (onClose) onClose();
-          }
-        }, 1000);
+        // Redirect to success page after a short delay
+        setTimeout(() => {
+          navigate('/form-success?type=quotation');
+          if (onClose) onClose();
+        }, 1500);
         
       } else {
         toast.error(data.message || "Failed to submit quotation request.");

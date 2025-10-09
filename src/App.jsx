@@ -21,6 +21,7 @@ import Breadcrumbs from "./Components/Breadcrumbs";
 import StarterWebsiteQuote from "./Pages/WebDevelopment/StarterWebsiteQuote";
 import EcommerceWebsiteQuote from "./Pages/WebDevelopment/EcommerceWebsiteQuote";
 import AdvancedWebsiteQuote from "./Pages/WebDevelopment/AdvancedWebsiteQuote";
+import FormSuccess from "./Pages/FormSuccess";
 
 const App = () => {
   return (
@@ -41,6 +42,7 @@ const App = () => {
         <Route path="/features/hosting-and-mails" element={<HostingAndEmail />} />
         <Route path="/contact-us" element={<Contact />} />
         <Route path="/new-project/request-quotation" element={<Quotation />} />
+        <Route path="/form-success" element={<FormSuccess />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/popia-act" element={<POPIA />} />

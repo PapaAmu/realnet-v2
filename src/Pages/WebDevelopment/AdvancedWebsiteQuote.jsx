@@ -1,6 +1,8 @@
 // pages/custom-website-quote.jsx
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import {
   FaArrowLeft,
   FaArrowRight,
@@ -25,6 +27,7 @@ import { trackFormSubmission, trackEvent, trackConversion } from "../../Componen
 
 
 const CustomWebsiteQuote = () => {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     projectType: '',
@@ -127,7 +130,33 @@ const CustomWebsiteQuote = () => {
       submitData.append('attachments', attachment.file);
     });
 
-    alert('Thank you for your submission! We will contact you within 24 hours to discuss your project.');
+    // Show success message
+    toast.success('Thank you for your submission! We will contact you within 24 hours to discuss your project.');
+    
+    // Reset form (optional)
+    setFormData({
+      projectType: '',
+      businessName: '',
+      industry: '',
+      timeline: '',
+      budgetRange: '',
+      features: [],
+      technicalRequirements: '',
+      description: '',
+      attachments: [],
+      contact: {
+        email: '',
+        fullName: '',
+        phone: '',
+        companyRole: ''
+      }
+    });
+    setCurrentStep(1);
+    
+    // Redirect to success page after a short delay
+    setTimeout(() => {
+      navigate('/form-success?type=custom-quote');
+    }, 1500);
   };
 
   const fadeIn = {

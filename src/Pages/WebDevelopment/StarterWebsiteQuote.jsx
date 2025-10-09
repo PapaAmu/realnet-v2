@@ -1,8 +1,8 @@
 // pages/starter-website-quote.jsx
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import SEO from "../../SEO";
 import RelatedContent from "../../Components/RelatedContent";
 import {
@@ -24,6 +24,7 @@ import { trackFormSubmission, trackEvent, trackConversion } from "../../Componen
 
 
 const StarterWebsiteQuote = () => {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -180,6 +181,11 @@ const StarterWebsiteQuote = () => {
           },
         });
         setCurrentStep(1);
+        
+        // Redirect to success page after a short delay
+        setTimeout(() => {
+          navigate('/form-success?type=starter-quote');
+        }, 1500);
       } else {
         // Handle validation errors or other errors
         console.error('API Error:', result);
@@ -246,22 +252,6 @@ const StarterWebsiteQuote = () => {
         }}
       />
 
-      {/* Toast Container */}
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        pauseOnHover
-        draggable
-        theme="colored"
-        toastClassName={() =>
-          "relative flex p-4 rounded-xl justify-between overflow-hidden cursor-pointer bg-gradient-to-r from-orange-400 to-pink-500 text-white shadow-lg"
-        }
-        bodyClassName={() => "text-sm font-medium flex items-center"}
-        progressClassName={() => "bg-white"}
-      />
 
       {/* Header - Mobile Responsive */}
       <header 

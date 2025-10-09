@@ -17,7 +17,7 @@ createRoot(document.getElementById("root")).render(
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
-        pauseOnHover
+        pauseOnHover={false}
         draggable
         theme="colored"
         toastClassName={() =>
