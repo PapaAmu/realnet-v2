@@ -11,8 +11,9 @@ const Home = () => {
   return (
     <div className="overflow-x-hidden">
       <Hero />
-      <Brand />
+
       <Boost />
+      <Brand />
       <MobileAdvert />
       <OurStack />
       <Industries />
