@@ -51,13 +51,23 @@
     
     <!-- Canonical URL (will be dynamically updated by React Helmet) -->
     <link rel="canonical" href="https://realnet-web.co.za/" />
+
+    <script>
+        // Check if user agent is a bot
+        const isBot = /googlebot|bingbot|yandex|baiduspider|twitterbot|facebookexternalhit/i.test(navigator.userAgent);
+        
+        if (isBot) {
+            // Redirect bots to prerender service
+            window.location.href = 'https://service.prerender.io/https://realnet-web.co.za' + window.location.pathname + window.location.search;
+        }
+    </script>
   </head>
   <body>
     <noscript>
       <div style="text-align: center; padding: 2rem; font-family: Arial, sans-serif;">
         <h1>JavaScript Required</h1>
         <p>This website requires JavaScript to function properly. Please enable JavaScript in your browser settings.</p>
-        <p>For assistance, contact us at: <a href="mailto:support@realnet-web.co.za">support@realnet-web.co.za</a></p>
+        <p>For assistance, contact us at: <a href="mailto:support@realnet-web.co.za">lukhele@realnet-web.co.za</a></p>
       </div>
     </noscript>
     
