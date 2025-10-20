@@ -17,6 +17,8 @@
 /.next/
 /out/
 
+docker-compose.yml
+
 # production
 /build
 
