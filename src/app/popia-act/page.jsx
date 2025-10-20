@@ -1,6 +1,8 @@
 import { generateSEO } from "@/lib/SEO";
 import PopiaAct from "@/components/pages/company/PopiaAct";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = generateSEO({
   title: 'POPIA Act Compliance | Data Protection Information South Africa',
   description: 'Learn about the POPIA Act and how Realnet Web Solutions ensures data protection and privacy compliance for businesses across South Africa. Understand your rights and our responsibilities under the Protection of Personal Information Act.',
