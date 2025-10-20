@@ -1,5 +1,5 @@
 # === 1. Build stage ===
-FROM node:20-buster AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
@@ -16,7 +16,7 @@ COPY . .
 RUN npm run build
 
 # === 2. Production stage ===
-FROM node:20-buster AS production
+FROM node:20-alpine AS production
 
 WORKDIR /app
 
