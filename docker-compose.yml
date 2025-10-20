@@ -1,0 +1,15 @@
+services:
+  realnet-app:
+    container_name: realnet-app
+    image: realnet-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - lukhele_default
+
+networks:
+  lukhele_default:
+    external: true

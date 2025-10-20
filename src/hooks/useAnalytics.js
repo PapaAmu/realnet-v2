@@ -51,7 +51,7 @@ export const useAnalytics = () => {
       category: 'Engagement',
       label: projectName,
     });
-  });
+  }, []); // Added missing dependency array
 
   return {
     trackEvent,
