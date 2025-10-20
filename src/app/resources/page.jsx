@@ -1,6 +1,8 @@
 import { generateSEO } from "@/lib/SEO";
 import Resources from "@/components/pages/company/Resources";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = generateSEO({
   title: 'Resources | Guides, Tools & Insights by Realnet Web Solutions',
   description: 'Access helpful resources from Realnet Web Solutions, including web development guides, digital business tools, and industry insights. Designed to support businesses and developers across South Africa.',

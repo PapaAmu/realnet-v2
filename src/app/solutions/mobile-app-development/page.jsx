@@ -1,6 +1,8 @@
 import { generateSEO } from "@/lib/SEO";
 import MobileAppDevelopment from "@/components/pages/solutions/MobileAppDevelopment";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = generateSEO({
   title: 'Mobile App Development | Cross-Platform & Business App Solutions',
   description: 'Professional mobile app development services in Johannesburg. We build custom iOS, Android, and cross-platform business apps that help your company connect, engage, and grow.',

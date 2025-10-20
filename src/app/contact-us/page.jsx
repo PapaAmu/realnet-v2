@@ -1,6 +1,7 @@
 import ContactUs from "@/components/pages/company/ContactUs";
 import { generateSEO } from "@/lib/SEO";
 
+export const dynamic = 'force-dynamic';
 
 export const metadata = generateSEO({
   title: 'Contact Realnet Web Solutions | Get in Touch With Our Team',

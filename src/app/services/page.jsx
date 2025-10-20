@@ -1,6 +1,8 @@
 import { generateSEO, generateStructuredData } from "@/lib/SEO";
 import ServicesOverview from "@/components/pages/company/ServicesOverview";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = generateSEO({
   title: 'Our Services | Web Development, Mobile Apps & Digital Solutions',
   description: 'Comprehensive digital solutions including web development, mobile apps, ecommerce, software development, and managed hosting services across South Africa.',

@@ -1,6 +1,8 @@
 import { generateSEO } from "@/lib/SEO";
 import OurProjects from "@/components/pages/company/OurProjects";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = generateSEO({
   title: 'Our Projects | Realnet Web Solutions Portfolio & Case Studies',
   description: 'Explore Realnet Web Solutions’ portfolio of successful web development, mobile app, and software projects across South Africa. Discover how we’ve helped businesses grow through innovative digital solutions.',

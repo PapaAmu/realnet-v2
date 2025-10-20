@@ -1,6 +1,8 @@
 import { generateSEO } from "@/lib/SEO";
 import MailAndHosting from "@/components/pages/solutions/MailAndHosting";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = generateSEO({
   title: 'Business Email & Hosting Solutions | Managed Hosting Services South Africa',
   description: 'Professional managed hosting services and business email solutions in South Africa. Secure, reliable hosting with 99.9% uptime, domain management, and professional business email setup.',

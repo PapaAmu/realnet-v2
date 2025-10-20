@@ -1,6 +1,8 @@
 import { generateSEO } from "@/lib/SEO";
 import CustomWebsite from "@/components/pages/solutions/quotes/CustomWebsite";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = generateSEO({
   title: 'Custom Web Application Quote | Advanced System Development South Africa',
   description: 'Request a quote for a custom web application or business system. We develop secure, scalable, and high-performance web apps for startups, SMEs, and enterprises across South Africa — including Johannesburg, Cape Town, Durban, and Pretoria.',

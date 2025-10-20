@@ -1,6 +1,8 @@
 import { generateSEO } from "@/lib/SEO";
 import WebsiteDevelopment from "@/components/pages/solutions/WebsiteDevelopment";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = generateSEO({
   title: 'Website Development Johannesburg | Custom, Responsive & SEO-Friendly Web Design',
   description: 'Expert web development services in Johannesburg — from business websites to ecommerce solutions. Our professional developers create custom, responsive, and SEO-friendly websites that grow your brand online.',

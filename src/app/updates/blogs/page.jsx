@@ -3,6 +3,8 @@ import { generateSEO } from '@/lib/SEO';
 import BlogPosts from "@/components/pages/company/blog/BlogPosts";
 import { Suspense } from 'react';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = generateSEO({
   title: 'Web Development Blog - Latest Trends & Insights',
   description: 'Stay updated with the latest web development trends, mobile app insights, and digital marketing strategies from RealNet Web Solutions.',
