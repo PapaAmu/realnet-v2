@@ -12,7 +12,7 @@ RUN npm install
 # Copy project files
 COPY . .
 
-# Build the Next.js app
+# Build the Next.js app (skip linting)
 RUN npm run build
 
 # === 2. Production stage ===
