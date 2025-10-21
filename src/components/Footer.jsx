@@ -1,6 +1,5 @@
 'use client';
 
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { 
@@ -13,7 +12,8 @@ import {
   FaHeart,
   FaPhone,
   FaMapMarkerAlt,
-  FaClock
+  FaClock,
+  FaSignInAlt
 } from "react-icons/fa";
 
 const Footer = () => {
@@ -28,6 +28,10 @@ const Footer = () => {
       // Here you would typically send the email to your backend
       console.log("Subscribed email:", email);
     }
+  };
+
+  const handleAdminLogin = () => {
+    window.open("https://admin.realnet-web.co.za", "_blank");
   };
 
   // Animation variants
@@ -134,40 +138,39 @@ const Footer = () => {
           viewport={{ once: true, amount: 0.3 }}
         >
           {/* Resources Column */}
-          <motion.ul className="space-y-4 text-gray-300" variants={fadeIn}>
+          <motion.div className="space-y-4 text-gray-300" variants={fadeIn}>
             <h4 className="text-orange-400 font-semibold pb-2 text-lg">Resources</h4>
-            <li>
+            <div className="space-y-4">
               <a
                 href="/contact-us"
                 className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
               >
                 <span className="group-hover:translate-x-1 transition-transform duration-200">Support</span>
               </a>
-            </li>
-            <li>
               <a
-                href="#"
-                className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
+                href="/popia-act"
+                className="duration-150 hover:text-orange-400 flex items-center gap-1 group "
               >
                 <span className="group-hover:translate-x-1 transition-transform duration-200">POPIA</span>
               </a>
-            </li>
-            <li>
-              <a
-                href="https://admin.realnet-web.co.za"
-                className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
+              <motion.button
+                onClick={handleAdminLogin}
+                className="duration-150 hover:text-orange-400 flex items-center gap-2 group w-full text-left"
+                whileHover={{ x: 5 }}
+                whileTap={{ scale: 0.95 }}
               >
+                <FaSignInAlt className="text-sm text-gray-400 group-hover:text-orange-400 transition-colors" />
                 <span className="group-hover:translate-x-1 transition-transform duration-200">Admin Login</span>
-              </a>
-            </li>
-          </motion.ul>
+              </motion.button>
+            </div>
+          </motion.div>
           
           {/* Quick Quotes Column */}
           <motion.ul className="space-y-4 text-gray-300" variants={fadeIn}>
             <h4 className="text-orange-400 font-semibold pb-2 text-lg">Quick Quotes</h4>
             <li>
               <a
-                href="/features/web-development/starter-website-quote"
+                href="/solutions/web-development/starter-website-quote-request"
                 className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
               >
                 <span className="group-hover:translate-x-1 transition-transform duration-200">Starter Business Website</span>
@@ -175,7 +178,7 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="/features/web-development/ecommerce-website-quote"
+                href="/solutions/web-development/e-commerce-quote-request"
                 className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
               >
                 <span className="group-hover:translate-x-1 transition-transform duration-200">Ecommerce Website</span>
@@ -183,7 +186,7 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="/features/web-development/custom-website-quote"
+                href="/solutions/web-development/custom-website-quote-request"
                 className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
               >
                 <span className="group-hover:translate-x-1 transition-transform duration-200">Custom Website Dev</span>
@@ -196,7 +199,7 @@ const Footer = () => {
             <h4 className="text-orange-400 font-semibold pb-2 text-lg">Explore</h4>
             <li>
               <a
-                href="/features/web-development"
+                href="/solutions/web-development"
                 className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
               >
                 <span className="group-hover:translate-x-1 transition-transform duration-200">Website Development</span>
@@ -204,7 +207,7 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="/features/mobile-app-development"
+                href="/solutions/mobile-app-development"
                 className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
               >
                 <span className="group-hover:translate-x-1 transition-transform duration-200">Mobile App Development</span>
@@ -212,7 +215,7 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="/features/software-development"
+                href="/solutions/software-development"
                 className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
               >
                 <span className="group-hover:translate-x-1 transition-transform duration-200">Software Development</span>
@@ -220,7 +223,7 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="/features/hosting-and-mails"
+                href="/solutions/email-and-hosting"
                 className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
               >
                 <span className="group-hover:translate-x-1 transition-transform duration-200">Hosting & Business Emails</span>
@@ -241,7 +244,7 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="/features/web-development/live-projects"
+                href="/projects"
                 className="duration-150 hover:text-orange-400 flex items-center gap-1 group"
               >
                 <span className="group-hover:translate-x-1 transition-transform duration-200">Projects</span>
@@ -277,7 +280,6 @@ const Footer = () => {
           <div className="flex items-center gap-4 flex-col sm:flex-row">
             <div className="flex items-center gap-3">
               <img src="/logo.png" className="h-8 invert" alt="RealNet Web Solutions" />
-              
             </div>
             <p className="text-gray-400 text-sm">
               © 2024 - {new Date().getFullYear()} RealNet Web Solutions PTY. All rights reserved.

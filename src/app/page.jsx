@@ -6,6 +6,7 @@ import MobileAdvert from "../components/MobileAdvert";
 import OurStack from "../components/OurStack";
 import Industries from "../components/Industries";
 import { generateSEO, generateStructuredData } from "@/lib/SEO";
+import ServicesSummary from "@/components/ServicesSammery";
 
 export const dynamic = 'force-dynamic';
 
@@ -30,9 +31,12 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <Hero />
-      <Brand />
+     
+      <ServicesSummary />
       <CompanyBoost />
+
       <MobileAdvert />
+       <Brand />
       <OurStack />
       <Industries />
     </>

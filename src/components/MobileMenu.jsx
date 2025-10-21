@@ -66,7 +66,7 @@ const MobileMenu = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-4 z-40 bg-black/80 backdrop-blur-md flex flex-col items-center justify-center p-6 rounded-2xl"
+          className="fixed inset-4 z-40 bg-black/50 backdrop-blur-sm flex flex-col items-center justify-center p-2 rounded-2xl"
         >
           {/* Close Button */}
           <motion.button

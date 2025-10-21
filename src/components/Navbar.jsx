@@ -1,9 +1,9 @@
 // app/components/Navbar.jsx
 'use client';
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import { CgMenuHotdog } from "react-icons/cg";
 import MobileMenu from "./MobileMenu";
 
 export default function Navbar() {
@@ -13,13 +13,29 @@ export default function Navbar() {
   const [mobileView, setMobileView] = useState("main");
   const [activeLink, setActiveLink] = useState("home");
   const [scrolled, setScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  // Throttled scroll handler to prevent excessive updates
+  const handleScroll = useCallback(() => {
+    const currentScrollY = window.scrollY;
+    
+    // Only update if scroll change is significant enough to prevent jitter
+    if (Math.abs(currentScrollY - lastScrollY) > 5) {
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down & past 100px - hide navbar
+        setIsVisible(false);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up - show navbar
+        setIsVisible(true);
+      }
+      
+      setScrolled(currentScrollY > 10);
+      setLastScrollY(currentScrollY);
+    }
+  }, [lastScrollY]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
-      setScrolled(isScrolled);
-    };
-
     // Set active link based on current URL
     const pathname = window.location.pathname;
     if (pathname === "/") setActiveLink("home");
@@ -30,9 +46,13 @@ export default function Navbar() {
     else if (pathname.includes("popia")) setActiveLink("popia");
     else if (pathname.includes("resources") || pathname.includes("#resources")) setActiveLink("resources");
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    // Add scroll event listener with passive for better performance
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleScroll]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -71,12 +91,18 @@ export default function Navbar() {
   return (
     <div>
       <motion.nav
-        className={`fixed top-4 left-4 right-4 z-50 backdrop-blur-md shadow-2xl border border-black/10 rounded-md ${scrolled ? 'bg-white' : 'bg-white'} transition-all duration-300`}
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+        className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 backdrop-blur-md shadow-2xl border border-black/10 rounded-md ${scrolled ? 'bg-white' : 'bg-white'} w-[calc(100%-2rem)] md:max-w-7xl`}
+        initial={{ y: -120 }}
+        animate={{ 
+          y: isVisible ? 0 : -120,
+        }}
+        transition={{ 
+          duration: 0.6, 
+          ease: [0.25, 0.46, 0.45, 0.94] // Custom ease for smooth motion
+        }}
+        style={{ opacity: 1 }}
       >
-        <div className="px-4 py-1">
+        <div className="px-4">
           <div className="flex justify-between items-center">
             {/* Logo */}
             <motion.a
@@ -92,7 +118,6 @@ export default function Navbar() {
                 whileHover={{ rotate: 5 }}
                 transition={{ duration: 0.2 }}
               />
-             
             </motion.a>
 
             {/* Desktop Menu */}
@@ -111,7 +136,7 @@ export default function Navbar() {
             <div className="md:hidden flex items-center">
               <motion.button
                 onClick={toggleMenu}
-                className="text-white focus:outline-none p-2"
+                className="text-black focus:outline-none p-2"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -126,25 +151,19 @@ export default function Navbar() {
                     strokeLinejoin="round"
                     initial={{ rotate: 0 }}
                     animate={{ rotate: 180 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.4 }}
                   >
                     <path d="M6 18L18 6M6 6l12 12" />
                   </motion.svg>
                 ) : (
-                  <motion.svg
-                    className="h-6 w-6"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    initial={{ rotate: 0 }}
-                    animate={{ rotate: 0 }}
+                  <motion.div
+                    initial={{ rotate: 0, scale: 1 }}
+                    animate={{ rotate: 0, scale: 1 }}
+                    whileHover={{ rotate: 90, scale: 1.1 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <path d="M4 6h16M4 12h16M4 18h16" />
-                  </motion.svg>
+                    <CgMenuHotdog className="h-6 w-6 text-black" />
+                  </motion.div>
                 )}
               </motion.button>
             </div>
@@ -216,7 +235,7 @@ const DesktopMenu = ({
             viewBox="0 0 24 24"
             stroke="currentColor"
             animate={{ rotate: isSolutionsDropdownOpen ? 180 : 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.3 }}
           >
             <path
               strokeLinecap="round"
@@ -258,7 +277,7 @@ const DesktopMenu = ({
             viewBox="0 0 24 24"
             stroke="currentColor"
             animate={{ rotate: isCompanyDropdownOpen ? 180 : 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.3 }}
           >
             <path
               strokeLinecap="round"
@@ -351,7 +370,7 @@ const DropdownMenu = ({ isOpen, items, setActiveLink, activeLink }) => (
         initial={{ opacity: 0, y: -10, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: -10, scale: 0.95 }}
-        transition={{ duration: 0.2 }}
+        transition={{ duration: 0.3 }}
         className="absolute left-0 mt-3 w-56 bg-black/95 rounded-xl shadow-2xl border border-white/10 z-50 backdrop-blur-md"
       >
         <ul className="py-2 text-sm text-gray-300">

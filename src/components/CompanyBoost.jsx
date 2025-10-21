@@ -4,8 +4,6 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const MotionLink = motion(Link);
-
 const CompanyBoost = () => {
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -39,10 +37,10 @@ const CompanyBoost = () => {
       <div className="relative isolate overflow-hidden bg-gray-900 pb-8 sm:pt-4 sm:pb-20 lg:pt-20 lg:pb-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-16 lg:max-w-none lg:grid-cols-2">
-            {/* Text Section at bottom */}
-            <div className="max-w-xl lg:max-w-lg flex flex-col md:mt-48 justify-center">
+            {/* Text Section - Added mobile spacing */}
+            <div className="max-w-xl lg:max-w-lg flex flex-col md:mt-48 justify-center pt-20 sm:pt-0">
               <motion.h2
-                className="text-4xl font-semibold tracking-tight text-white"
+                className="text-3xl sm:text-4xl font-semibold tracking-tight text-white text-center sm:text-left mt-8 sm:mt-0"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.3 }}
@@ -53,7 +51,7 @@ const CompanyBoost = () => {
               </motion.h2>
 
               <motion.p
-                className="mt-4 text-gray-400 text-base leading-relaxed"
+                className="mt-6 text-gray-400 text-base leading-relaxed text-center sm:text-left"
                 initial="hidden"
                 whileInView="visible"
                 variants={featureVariants}
@@ -63,32 +61,35 @@ const CompanyBoost = () => {
               </motion.p>
 
               {/* Use a motion-wrapped Next.js Link to avoid nested <a> tags */}
-              <MotionLink
-                href="/about-us"
-                className="inline-flex px-4 py-2 mt-4 bg-gradient-to-r w-44 from-orange-500 to-pink-500 rounded-md text-white font-semibold items-center"
-                whileHover={{
-                  // animate background using transform trick since CSS gradients don't animate easily through framer
-                  scale: 1.02,
-                }}
+              <motion.div
+                className="flex justify-center sm:justify-start mt-6"
+                initial="hidden"
+                whileInView="visible"
+                variants={featureVariants}
               >
-                <span className="flex items-center w-full justify-between">
-                  <span>More About Us</span>
-                  <motion.span
-                    animate={{ x: [0, 4, 0] }}
-                    transition={{ repeat: Infinity, duration: 1.5 }}
-                    aria-hidden
-                  >
-                    &nbsp;→
-                  </motion.span>
-                </span>
-              </MotionLink>
+                <Link
+                  href="/about-us"
+                  className="inline-flex px-6 py-3 bg-gradient-to-r w-48 from-orange-500 to-pink-500 rounded-md text-white font-semibold items-center hover:from-orange-600 hover:to-pink-600 transition-all duration-300"
+                >
+                  <span className="flex items-center w-full justify-between">
+                    <span>More About Us</span>
+                    <motion.span
+                      animate={{ x: [0, 4, 0] }}
+                      transition={{ repeat: Infinity, duration: 1.5 }}
+                      aria-hidden
+                    >
+                      &nbsp;→
+                    </motion.span>
+                  </span>
+                </Link>
+              </motion.div>
             </div>
 
-            {/* Feature Blocks */}
-            <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-2 lg:pt-2">
+            {/* Feature Blocks - Added mobile spacing */}
+            <dl className="grid grid-cols-1 gap-x-8 gap-y-12 sm:gap-y-10 sm:grid-cols-2 lg:grid-cols-2 lg:pt-2 mt-12 sm:mt-0">
               {/* Professional Web Solutions */}
               <motion.div
-                className="flex flex-col items-start"
+                className="flex flex-col items-center sm:items-start text-center sm:text-left"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.3 }}
@@ -116,7 +117,7 @@ const CompanyBoost = () => {
 
               {/* Secure & Reliable */}
               <motion.div
-                className="flex flex-col items-start"
+                className="flex flex-col items-center sm:items-start text-center sm:text-left"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.3 }}
@@ -145,7 +146,7 @@ const CompanyBoost = () => {
 
               {/* Managed Hosting */}
               <motion.div
-                className="flex flex-col items-start"
+                className="flex flex-col items-center sm:items-start text-center sm:text-left"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.3 }}
@@ -173,7 +174,7 @@ const CompanyBoost = () => {
 
               {/* Business Emails */}
               <motion.div
-                className="flex flex-col items-start"
+                className="flex flex-col items-center sm:items-start text-center sm:text-left"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.3 }}
