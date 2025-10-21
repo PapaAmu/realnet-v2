@@ -1,16 +1,15 @@
 import { generateSEO } from "@/lib/SEO";
-import NotFoundPage from "@/components/pages/NotFound";
+import NotFoundComponent from "@/components/pages/NotFound";
 
 export const dynamic = 'force-dynamic';
 
-
 export const metadata = generateSEO({
-  title: 'About Realnet Web Solutions | South Africa’s Digital Transformation Partner',
-  description: 'Learn more about Realnet Web Solutions — a South African digital agency specializing in web development, mobile apps, and business software. We empower brands and organizations nationwide through modern, results-driven digital solutions.',
-  keywords: 'about Realnet Web Solutions, web development company South Africa, digital transformation agency, software development South Africa, mobile app developers, website design company South Africa, business software solutions, IT company South Africa, Realnet team, web developers South Africa',
-  path: '/*',
+  title: 'Page Not Found | Realnet Web Solutions',
+  description: 'The page you are looking for could not be found. Return to Realnet Web Solutions homepage for web development, mobile apps, and software solutions in South Africa.',
+  keywords: 'page not found, 404 error, Realnet Web Solutions, web development South Africa',
+  path: '/404',
 });
 
 export default function NotFoundPage() {
-  return <NotFoundPage />;
+  return <NotFound />;
 }
