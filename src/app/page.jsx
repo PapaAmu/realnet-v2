@@ -7,6 +7,8 @@ import OurStack from "../components/OurStack";
 import Industries from "../components/Industries";
 import { generateSEO, generateStructuredData } from "@/lib/SEO";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = generateSEO({
   title: 'WELCOME - Web & Mobile App Development Johannesburg',
   description: 'Professional web development, ecommerce solutions, mobile apps, and software development services in Johannesburg. Starter websites, custom development & hosting.',
